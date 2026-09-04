@@ -32,7 +32,7 @@ CATEGORY_PATTERNS = {
     "Electronics": [
         "phone", "mobile", "laptop", "computer", "tv", "television", "radio", "speaker",
         "earphone", "headphone", "charger", "cable", "battery", "electronic", "gadget",
-        "device"
+        "device", "gaming", "tech", "smart", "digital", " gadget", "electronic", "smart"
     ],
     "Handmade & crafts": [
         "mask", "clay", "pottery", "brass", "coir", "cane", "woven", "wood carving",
@@ -60,6 +60,17 @@ def generate_local_marketing_pitch(title: str, keywords: str) -> Tuple[str, List
         f"Discover the unique taste and quality of {title}. Made with {notes_str}, it's an authentic Sri Lankan experience that you will absolutely love.",
         f"Elevate your lifestyle with {title}! Highlighting {notes_str}, this product is sourced locally and packed with care just for you.",
         f"Introducing {title} – the perfect blend of tradition and quality. With {notes_str}, this is a must-have for anyone who appreciates genuine local products.",
+        f"Experience the premium quality of {title}, specially crafted for you. Enhanced with {notes_str}, it promises satisfaction with every purchase.",
+        f"Looking for something special? Our {title} is just what you need! Featuring {notes_str}, it offers unmatched value and authentic local charm.",
+        f"Treat yourself to {title}, a product that truly stands out. Made with {notes_str}, it is the perfect choice for everyday excellence.",
+        f"Unlock the best of Sri Lanka with our top-rated {title}. Showcasing {notes_str}, it is designed to meet the highest standards of quality.",
+        f"Your search for the perfect item ends here with {title}. Featuring {notes_str}, this product is trusted by locals for its reliability and excellence.",
+        f"Step up your game with the incredible {title}. Boasting {notes_str}, it brings you exceptional quality right from the heart of our community.",
+        f"Bring home the magic of {title} today! Characterized by {notes_str}, it is carefully prepared to ensure you get nothing but the best.",
+        f"Don't miss out on {title}, a true local favorite! Made to perfection with {notes_str}, it's exactly what you've been looking for.",
+        f"Get ready to be amazed by {title}. Featuring {notes_str}, it combines modern convenience with traditional Sri Lankan values.",
+        f"Why settle for less when you can have {title}? Enhanced by {notes_str}, it is the ultimate addition to your daily routine.",
+        f"Experience pure joy with our highly sought-after {title}. Highlights include {notes_str}, ensuring a delightful experience every single time."
     ]
     pitch = random.choice(templates)
     
@@ -100,7 +111,10 @@ async def generate_marketing_copy(title: str, keywords: str) -> CopyGenerationRe
                 f"Write a compelling and dynamic marketing pitch (1 to 3 sentences) for the following product to appeal to Sri Lankan buyers.\n"
                 f"Product Title: {title}\n"
                 f"Merchant Notes: {keywords}\n"
-                f"Make the description natural and vary the starting phrases so they don't sound repetitive.\n"
+                f"CRITICAL RULES:\n"
+                f"- Make the description natural and vary the starting phrases so they don't sound repetitive.\n"
+                f"- Ensure the description strictly matches the product's actual category (e.g., do not use food-related descriptions for electronics).\n"
+                f"- Identify if a brand is mentioned. If so, ONLY include details related to the mentioned item and its brand. Do not invent unrelated features.\n"
                 f"Return ONLY the pitch."
             )
             response = client.models.generate_content(
