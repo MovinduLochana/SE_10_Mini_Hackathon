@@ -6,50 +6,63 @@ from app.models.ai import CopyGenerationResponse, CategorySuggestionResponse
 
 logger = logging.getLogger(__name__)
 
+import random
+
 # Sri Lankan Category Keyword Heuristic Map
 CATEGORY_PATTERNS = {
-    "Spices": [
+    "Grocery & food": [
         "cinnamon", "kurundu", "pepper", "gam miris", "cardamom", "clove", "karabu",
         "goraka", "turmeric", "kaha", "curry powder", "thunapaha", "chili", "miris",
-        "cumin", "suduru", "fenugreek", "uluhal", "nutmeg", "sadikka", "spice"
-    ],
-    "Sweets": [
-        "kithul", "treacle", "pani", "jaggery", "hakuru", "kavum", "kokis", "dodol",
-        "thala", "aluwa", "halapa", "pani walalu", "muscat", "sweet", "dessert"
-    ],
-    "Fresh Produce": [
+        "cumin", "suduru", "fenugreek", "uluhal", "nutmeg", "sadikka", "spice",
         "banana", "kesel", "mango", "avocado", "papaya", "coconut", "pol", "gotukola",
         "mukunuwenna", "dambala", "drumstick", "murunga", "vegetable", "fruit", "leaf",
-        "fresh", "organic green", "lime", "dehi"
+        "fresh", "organic green", "lime", "dehi", "pickle", "achcharu", "chutney",
+        "seeni sambol", "lunu miris", "pol sambol", "paste", "homemade", "sauce",
+        "chili paste", "jam", "preserved", "tea", "ceylon tea", "coffee", "king coconut",
+        "thambili", "herbal", "kothalahimbutu", "belimal", "ranawara", "drink", "juice",
+        "beverage", "roast paan", "bun", "samosa", "pastry", "patty", "roti", "bread",
+        "pol roti", "short eats", "kithul", "treacle", "pani", "jaggery", "hakuru",
+        "kavum", "kokis", "dodol", "thala", "aluwa", "halapa", "pani walalu", "muscat",
+        "sweet", "dessert", "grocery", "food"
     ],
-    "Homemade": [
-        "pickle", "achcharu", "chutney", "seeni sambol", "lunu miris", "pol sambol",
-        "paste", "homemade", "sauce", "chili paste", "jam", "preserved"
+    "Fashion & apparel": [
+        "shirt", "t-shirt", "trouser", "dress", "saree", "sarong", "batik", "handloom",
+        "shoes", "clothes", "apparel", "fashion", "wear", "garment", "clothing"
     ],
-    "Beverages": [
-        "tea", "ceylon tea", "coffee", "king coconut", "thambili", "herbal", "kothalahimbutu",
-        "belimal", "ranawara", "drink", "juice", "beverage"
+    "Electronics": [
+        "phone", "mobile", "laptop", "computer", "tv", "television", "radio", "speaker",
+        "earphone", "headphone", "charger", "cable", "battery", "electronic", "gadget",
+        "device"
     ],
-    "Handicrafts": [
-        "batik", "mask", "clay", "pottery", "handloom", "brass", "coir", "cane",
-        "woven", "wood carving", "craft"
+    "Handmade & crafts": [
+        "mask", "clay", "pottery", "brass", "coir", "cane", "woven", "wood carving",
+        "craft", "handmade", "art", "sculpture", "painting"
     ],
-    "Bakery": [
-        "roast paan", "bun", "samosa", "pastry", "patty", "roti", "bread", "pol roti", "short eats"
+    "Hardware & tools": [
+        "tool", "hardware", "hammer", "nail", "screw", "drill", "saw", "pipe",
+        "cement", "paint", "brush", "construction", "building", "repair"
+    ],
+    "Beauty & wellness": [
+        "soap", "cream", "lotion", "perfume", "makeup", "cosmetic", "ayurvedic",
+        "herbal", "oil", "massage", "wellness", "beauty", "skin", "hair", "shampoo"
     ]
 }
 
 def generate_local_marketing_pitch(title: str, keywords: str) -> Tuple[str, List[str]]:
     """
-    Sri Lankan market-optimized 2-sentence pitch generator fallback.
+    Sri Lankan market-optimized dynamic pitch generator fallback.
     """
     clean_notes = [n.strip() for n in re.split(r"[,;•\n]", keywords) if n.strip()]
     notes_str = ", ".join(clean_notes) if clean_notes else "authentic local quality"
     
-    sentence_1 = f"Handcrafted with care, our {title} brings you the finest Sri Lankan goodness featuring {notes_str}."
-    sentence_2 = "Perfect for your household or gifting, guaranteed to deliver pure traditional flavor and freshness straight to your doorstep."
-
-    pitch = f"{sentence_1} {sentence_2}"
+    templates = [
+        f"Handcrafted with care, our {title} brings you the finest Sri Lankan goodness featuring {notes_str}. Perfect for your household or gifting, guaranteed to deliver pure traditional flavor and freshness straight to your doorstep.",
+        f"Discover the unique taste and quality of {title}. Made with {notes_str}, it's an authentic Sri Lankan experience that you will absolutely love.",
+        f"Elevate your lifestyle with {title}! Highlighting {notes_str}, this product is sourced locally and packed with care just for you.",
+        f"Introducing {title} – the perfect blend of tradition and quality. With {notes_str}, this is a must-have for anyone who appreciates genuine local products.",
+    ]
+    pitch = random.choice(templates)
+    
     highlights = clean_notes[:4] if clean_notes else ["100% Local", "Freshly Packed", "Direct from Vendor"]
     return pitch, highlights
 
@@ -71,7 +84,7 @@ def suggest_category_locally(title: str, description: str = "") -> Tuple[str, Li
         alternatives = [m[0] for m in matches[1:3]]
         return best_category, alternatives, 0.92
 
-    return "Homemade", ["Spices", "Fresh Produce"], 0.60
+    return "Other", ["Grocery & food", "Handmade & crafts"], 0.60
 
 async def generate_marketing_copy(title: str, keywords: str) -> CopyGenerationResponse:
     """
@@ -84,10 +97,11 @@ async def generate_marketing_copy(title: str, keywords: str) -> CopyGenerationRe
             client = genai.Client(api_key=settings.GEMINI_API_KEY)
             prompt = (
                 f"You are a marketing copywriter for Sri Lankan micro-merchants on PolaLink LK. "
-                f"Write exactly a compelling 2-sentence marketing pitch for the following product to appeal to Sri Lankan buyers.\n"
+                f"Write a compelling and dynamic marketing pitch (1 to 3 sentences) for the following product to appeal to Sri Lankan buyers.\n"
                 f"Product Title: {title}\n"
                 f"Merchant Notes: {keywords}\n"
-                f"Return ONLY the 2 sentences."
+                f"Make the description natural and vary the starting phrases so they don't sound repetitive.\n"
+                f"Return ONLY the pitch."
             )
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
