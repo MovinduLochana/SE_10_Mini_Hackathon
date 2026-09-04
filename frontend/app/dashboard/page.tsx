@@ -32,7 +32,9 @@ export default function DashboardPage() {
     const [inventory, setInventory] = useState<ProductResponse[]>([]);
     const [loading, setLoading] = useState(true);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
-    const [inventoryLoading, setInventoryLoading] = useState(false);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+    const [inventoryLoading, setInventoryLoading] = useState(true);
+    const [inventoryError, setInventoryError] = useState<string | null>(null);
     const [actionLoadingId, setActionLoadingId] = useState<string | null>(null);
     const [syncingProductIds, setSyncingProductIds] = useState<Set<string>>(new Set());
     const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -66,15 +68,20 @@ export default function DashboardPage() {
         const storedToken = typeof window !== "undefined" ? localStorage.getItem("polalink_token") : null;
         if (storedToken) {
             setToken(storedToken);
+            setIsCheckingAuth(false);
             loadMerchantStores(storedToken);
         } else {
+            setIsCheckingAuth(false);
             setLoading(false);
             setIsInitialLoad(false);
+            setInventoryLoading(false);
         }
     }, []);
 
     async function loadMerchantStores(authToken: string) {
         setLoading(true);
+        setInventoryLoading(true);
+        setInventoryError(null);
         try {
             const myStores = await api.getMyStores(authToken);
             setStores(myStores);
@@ -84,9 +91,13 @@ export default function DashboardPage() {
                 const matched = myStores.find((s) => s.slug === savedSlug) || myStores[0];
                 setSelectedStore(matched);
                 await loadInventory(matched.slug, authToken);
+            } else {
+                setInventoryLoading(false);
             }
-        } catch (err) {
+        } catch (err: unknown) {
             console.error("Failed to load merchant stores:", err);
+            setInventoryError(err instanceof Error ? err.message : "Failed to load stores.");
+            setInventoryLoading(false);
         } finally {
             setLoading(false);
             setIsInitialLoad(false);
@@ -95,11 +106,13 @@ export default function DashboardPage() {
 
     async function loadInventory(slug: string, authToken: string) {
         setInventoryLoading(true);
+        setInventoryError(null);
         try {
             const items = await api.getMerchantInventory(slug, authToken);
             setInventory(items);
-        } catch (err) {
+        } catch (err: unknown) {
             console.error("Failed to load inventory:", err);
+            setInventoryError(err instanceof Error ? err.message : "Failed to load inventory items.");
         } finally {
             setInventoryLoading(false);
         }
@@ -119,10 +132,12 @@ export default function DashboardPage() {
             const authToken = res.access_token;
             localStorage.setItem("polalink_token", authToken);
             setToken(authToken);
+            setIsInitialLoad(true);
             await loadMerchantStores(authToken);
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : "Failed to log in.";
             setLoginError(msg);
+            setIsInitialLoad(false);
         } finally {
             setIsLoggingIn(false);
         }
@@ -301,7 +316,7 @@ export default function DashboardPage() {
 
 function DashboardSkeleton() {
     return (
-        <div className="app-root" style={{ minHeight: "100vh", backgroundColor: "var(--cream, #f5f4ef)", padding: "24px 16px 64px" }}>
+        <div className="app-root animate-pulse" style={{ minHeight: "100vh", backgroundColor: "var(--cream, #f5f4ef)", padding: "24px 16px 64px" }}>
             <div style={{ maxWidth: 1100, margin: "0 auto" }}>
                 {/* Header Skeleton */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
@@ -353,8 +368,8 @@ function DashboardSkeleton() {
     );
 }
 
-    // ── Initial Loading State ──
-    if (token && isInitialLoad) {
+    // ── Auth Checking & Initial Loading State ──
+    if (isCheckingAuth || (token && (isInitialLoad || loading))) {
         return <DashboardSkeleton />;
     }
 
@@ -725,10 +740,95 @@ function DashboardSkeleton() {
                 </div>
 
                 {/* Inventory List */}
-                {inventoryLoading ? (
-                    <div style={{ padding: 48, textAlign: "center", color: "var(--ink)", opacity: 0.6 }}>
-                        <Loader2 size={28} className="animate-spin" style={{ margin: "0 auto 12px" }} />
-                        <p>Syncing live inventory...</p>
+                {loading || inventoryLoading ? (
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                        {[1, 2, 3, 4].map((i) => (
+                            <div
+                                key={i}
+                                style={{
+                                    backgroundColor: "var(--paper, #fcfbf7)",
+                                    height: 74,
+                                    borderRadius: 12,
+                                    border: "1px solid var(--line, #e7e5e4)",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    padding: "0 18px",
+                                    gap: 14,
+                                    opacity: 0.65,
+                                }}
+                                className="animate-pulse"
+                            >
+                                <div style={{ width: 48, height: 48, borderRadius: 8, backgroundColor: "rgba(0,0,0,0.06)" }} />
+                                <div style={{ flex: 1 }}>
+                                    <div style={{ width: "32%", height: 15, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.08)", marginBottom: 6 }} />
+                                    <div style={{ width: "18%", height: 11, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.05)" }} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : inventoryError ? (
+                    <div
+                        style={{
+                            backgroundColor: "var(--paper, #fcfbf7)",
+                            border: "1px dashed var(--line, #e7e5e4)",
+                            borderRadius: 14,
+                            padding: 36,
+                            textAlign: "center",
+                        }}
+                    >
+                        <AlertTriangle size={32} color="var(--terra, #c2410c)" style={{ margin: "0 auto 10px" }} />
+                        <h3 style={{ margin: "0 0 6px", fontSize: 17, color: "var(--ink, #1c1917)" }}>Unable to load inventory</h3>
+                        <p style={{ margin: "0 0 16px", fontSize: 13.5, opacity: 0.7 }}>{inventoryError}</p>
+                        <button
+                            onClick={() => {
+                                if (token && selectedStore) {
+                                    loadInventory(selectedStore.slug, token);
+                                }
+                            }}
+                            style={{
+                                padding: "8px 18px",
+                                borderRadius: 8,
+                                border: "none",
+                                backgroundColor: "var(--teal, #0d9488)",
+                                color: "#fff",
+                                fontSize: 13,
+                                fontWeight: 600,
+                                cursor: "pointer",
+                            }}
+                        >
+                            Retry Loading
+                        </button>
+                    </div>
+                ) : stores.length === 0 ? (
+                    <div
+                        style={{
+                            backgroundColor: "var(--paper, #fcfbf7)",
+                            border: "1px dashed var(--line, #e7e5e4)",
+                            borderRadius: 14,
+                            padding: 48,
+                            textAlign: "center",
+                        }}
+                    >
+                        <Store size={36} color="var(--teal, #0d9488)" style={{ margin: "0 auto 12px", opacity: 0.6 }} />
+                        <h3 style={{ margin: "0 0 6px", fontSize: 18 }}>No store found</h3>
+                        <p style={{ margin: "0 0 18px", fontSize: 13.5, opacity: 0.65 }}>
+                            You haven&apos;t created a store yet. Set up your shop profile to start managing products.
+                        </p>
+                        <a
+                            href="/"
+                            style={{
+                                display: "inline-block",
+                                padding: "9px 20px",
+                                borderRadius: 8,
+                                backgroundColor: "var(--teal, #0d9488)",
+                                color: "#fff",
+                                fontSize: 13.5,
+                                fontWeight: 600,
+                                textDecoration: "none",
+                            }}
+                        >
+                            + Create Shop
+                        </a>
                     </div>
                 ) : filteredInventory.length === 0 ? (
                     <div
