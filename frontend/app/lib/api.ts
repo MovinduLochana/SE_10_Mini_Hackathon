@@ -32,6 +32,8 @@ export interface ProductResponse {
   image_url?: string;
   is_available: boolean;
   stock_badge: "IN_STOCK" | "LOW_STOCK" | "OUT_OF_STOCK";
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface OrderCalculationItem {
