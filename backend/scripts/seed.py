@@ -6,7 +6,15 @@ Run with: python scripts/seed.py
 
 import sys
 import os
-import uuid
+import io
+
+# Ensure UTF-8 output on Windows consoles
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 # Ensure backend root is in sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -106,63 +114,76 @@ SAMPLE_STORES = [
 ]
 
 def seed_database():
-    print("🌱 PolaLink LK: Seeding Supabase database...")
+    print("[*] PolaLink LK: Connecting to Supabase database...")
     try:
         supabase = get_supabase()
     except Exception as e:
-        print(f"❌ Could not connect to Supabase: {e}")
+        print(f"[!] Could not connect to Supabase: {e}")
         print("Please configure SUPABASE_URL and SUPABASE_KEY in backend/.env before seeding.")
         return
 
-    for store_data in SAMPLE_STORES:
-        slug = store_data["slug"]
-        print(f"-> Processing store: {store_data['name']} ({slug})")
+    try:
+        for store_data in SAMPLE_STORES:
+            slug = store_data["slug"]
+            print(f"\n[+] Processing store: {store_data['name']} ({slug})")
 
-        # Check existing store
-        existing = supabase.table("stores").select("id").eq("slug", slug).execute()
-        if existing.data:
-            store_id = existing.data[0]["id"]
-            print(f"   Store already exists (ID: {store_id}). Updating...")
-            supabase.table("stores").update({
-                "name": store_data["name"],
-                "whatsapp_number": store_data["whatsapp_number"],
-                "description": store_data["description"]
-            }).eq("id", store_id).execute()
-        else:
-            print("   Creating new store...")
-            res = supabase.table("stores").insert({
-                "name": store_data["name"],
-                "slug": slug,
-                "whatsapp_number": store_data["whatsapp_number"],
-                "description": store_data["description"]
-            }).execute()
-            if not res.data:
-                print(f"   ❌ Failed to insert store {slug}")
-                continue
-            store_id = res.data[0]["id"]
-
-        # Insert / Update Products
-        for prod in store_data["products"]:
-            # Check existing product by title and store_id
-            existing_prod = supabase.table("products").select("id").eq("store_id", store_id).eq("title", prod["title"]).execute()
-            prod_record = {
-                "store_id": store_id,
-                "title": prod["title"],
-                "description": prod["description"],
-                "price": prod["price"],
-                "category": prod["category"],
-                "stock": prod["stock"],
-                "image_url": prod["image_url"],
-                "is_available": prod["is_available"]
-            }
-            if existing_prod.data:
-                supabase.table("products").update(prod_record).eq("id", existing_prod.data[0]["id"]).execute()
-                print(f"   - Updated product: {prod['title']}")
+            # Check existing store
+            existing = supabase.table("stores").select("id").eq("slug", slug).execute()
+            if existing.data:
+                store_id = existing.data[0]["id"]
+                print(f"    Store already exists (ID: {store_id}). Updating...")
+                supabase.table("stores").update({
+                    "name": store_data["name"],
+                    "whatsapp_number": store_data["whatsapp_number"],
+                    "description": store_data["description"]
+                }).eq("id", store_id).execute()
             else:
-                supabase.table("products").insert(prod_record).execute()
-                print(f"   + Inserted product: {prod['title']}")
+                print("    Creating new store...")
+                res = supabase.table("stores").insert({
+                    "name": store_data["name"],
+                    "slug": slug,
+                    "whatsapp_number": store_data["whatsapp_number"],
+                    "description": store_data["description"]
+                }).execute()
+                if not res.data:
+                    print(f"    [!] Failed to insert store {slug}")
+                    continue
+                store_id = res.data[0]["id"]
 
-    print("\n✅ Seeding completed successfully!")
+            # Insert / Update Products
+            for prod in store_data["products"]:
+                existing_prod = supabase.table("products").select("id").eq("store_id", store_id).eq("title", prod["title"]).execute()
+                prod_record = {
+                    "store_id": store_id,
+                    "title": prod["title"],
+                    "description": prod["description"],
+                    "price": prod["price"],
+                    "category": prod["category"],
+                    "stock": prod["stock"],
+                    "image_url": prod["image_url"],
+                    "is_available": prod["is_available"]
+                }
+                if existing_prod.data:
+                    supabase.table("products").update(prod_record).eq("id", existing_prod.data[0]["id"]).execute()
+                    print(f"    ~ Updated product: {prod['title']}")
+                else:
+                    supabase.table("products").insert(prod_record).execute()
+                    print(f"    + Inserted product: {prod['title']}")
+
+        print("\n[SUCCESS] Seeding completed successfully!")
+
+    except Exception as e:
+        err_msg = str(e)
+        print(f"\n[ERROR] Seeding failed: {err_msg}")
+        if "PGRST205" in err_msg or "schema cache" in err_msg or "does not exist" in err_msg:
+            print("\n" + "="*70)
+            print("DATABASE SETUP REQUIRED:")
+            print("The tables 'stores' and 'products' do not exist in your Supabase project yet.")
+            print("1. Open: https://supabase.com/dashboard/project/otmvqguedkxcmlxsdeed/sql/new")
+            print("2. Paste the contents of 'backend/scripts/supabase_schema.sql'")
+            print("3. Click 'Run' to create the tables and policies.")
+            print("4. Then run this seed script again: python scripts/seed.py")
+            print("="*70 + "\n")
 
 if __name__ == "__main__":
     seed_database()
