@@ -44,7 +44,7 @@ def build_whatsapp_order_message(
         lines.append(f"*Delivery / Notes:* {delivery_notes.strip()}")
 
     lines.append("━━━━━━━━━━━━━━━━━━━━━━")
-    lines.append("_Sent via StallFront")
+    lines.append("```Sent via StallFront```")
 
     return "\n".join(lines)
 
