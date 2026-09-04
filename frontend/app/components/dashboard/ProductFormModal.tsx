@@ -8,22 +8,27 @@ import { CATEGORIES } from "../storefront-onboarding/types";
 interface ProductFormModalProps {
     storeSlug: string;
     token: string;
+    initialProduct?: ProductResponse | null;
     onClose: () => void;
-    onProductCreated: (product: ProductResponse) => void;
+    onProductCreated?: (product: ProductResponse) => void;
+    onProductUpdated?: (product: ProductResponse) => void;
 }
 
 export function ProductFormModal({
     storeSlug,
     token,
+    initialProduct,
     onClose,
     onProductCreated,
+    onProductUpdated,
 }: ProductFormModalProps) {
-    const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("");
-    const [price, setPrice] = useState<string>("");
-    const [stock, setStock] = useState<string>("10");
-    const [imageUrl, setImageUrl] = useState("");
-    const [description, setDescription] = useState("");
+    const isEdit = Boolean(initialProduct);
+    const [title, setTitle] = useState(initialProduct?.title || "");
+    const [category, setCategory] = useState(initialProduct?.category || "");
+    const [price, setPrice] = useState<string>(initialProduct ? String(initialProduct.price) : "");
+    const [stock, setStock] = useState<string>(initialProduct ? String(initialProduct.stock) : "10");
+    const [imageUrl, setImageUrl] = useState(initialProduct?.image_url || "");
+    const [description, setDescription] = useState(initialProduct?.description || "");
 
     // AI Copywriter state
     const [keywords, setKeywords] = useState("");
@@ -126,24 +131,43 @@ export function ProductFormModal({
 
         setIsSubmitting(true);
         try {
-            const newProduct = await api.addProduct(
-                storeSlug,
-                {
-                    title: title.trim(),
-                    description: description.trim() || undefined,
-                    price: numPrice,
-                    category: category.trim(),
-                    stock: numStock,
-                    image_url: imageUrl.trim() || undefined,
-                    is_available: numStock > 0,
-                },
-                token
-            );
+            if (isEdit && initialProduct) {
+                const updatedProduct = await api.updateProduct(
+                    initialProduct.id,
+                    {
+                        title: title.trim(),
+                        description: description.trim() || undefined,
+                        price: numPrice,
+                        category: category.trim(),
+                        stock: numStock,
+                        image_url: imageUrl.trim() || undefined,
+                        is_available: numStock > 0,
+                    },
+                    token
+                );
 
-            onProductCreated(newProduct);
-            onClose();
+                onProductUpdated?.(updatedProduct);
+                onClose();
+            } else {
+                const newProduct = await api.addProduct(
+                    storeSlug,
+                    {
+                        title: title.trim(),
+                        description: description.trim() || undefined,
+                        price: numPrice,
+                        category: category.trim(),
+                        stock: numStock,
+                        image_url: imageUrl.trim() || undefined,
+                        is_available: numStock > 0,
+                    },
+                    token
+                );
+
+                onProductCreated?.(newProduct);
+                onClose();
+            }
         } catch (err: unknown) {
-            const msg = err instanceof Error ? err.message : "Failed to create product.";
+            const msg = err instanceof Error ? err.message : isEdit ? "Failed to update product." : "Failed to create product.";
             setSubmitError(msg);
         } finally {
             setIsSubmitting(false);
@@ -208,10 +232,12 @@ export function ProductFormModal({
                         color: "var(--ink, #1c1917)",
                     }}
                 >
-                    Add New Product
+                    {isEdit ? "Edit Product" : "Add New Product"}
                 </h2>
                 <p style={{ margin: "0 0 20px", fontSize: 13.5, opacity: 0.65, color: "var(--ink)" }}>
-                    Enter product details, stock count, and use AI to craft your marketing pitch.
+                    {isEdit
+                        ? "Update product details, pricing, stock count, or refine AI copy."
+                        : "Enter product details, stock count, and use AI to craft your marketing pitch."}
                 </p>
 
                 {submitError && (
@@ -549,7 +575,9 @@ export function ProductFormModal({
                             }}
                         >
                             {isSubmitting && <Loader2 size={14} className="animate-spin" />}
-                            {isSubmitting ? "Saving..." : "Save Product"}
+                            {isSubmitting
+                                ? isEdit ? "Updating..." : "Saving..."
+                                : isEdit ? "Update Product" : "Save Product"}
                         </button>
                     </div>
                 </form>
