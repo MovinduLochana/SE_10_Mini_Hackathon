@@ -7,10 +7,14 @@ import { DetailsStep } from "./screens/DetailsStep";
 import { SuccessScreen } from "./screens/SuccessScreen";
 import { slugify } from "./utils";
 import type { FormState, Screen } from "./types";
+import { api, StoreResponse } from "../../lib/api";
 
 export default function StorefrontOnboarding() {
     const [screen, setScreen] = useState<Screen>("landing");
     const [copied, setCopied] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [apiError, setApiError] = useState<string | null>(null);
+    const [createdStore, setCreatedStore] = useState<StoreResponse | null>(null);
     const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
 
     const [form, setForm] = useState<FormState>({
@@ -30,11 +34,14 @@ export default function StorefrontOnboarding() {
             (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
                 setForm((f) => ({ ...f, [key]: e.target.value }));
 
-    const slug = useMemo(() => slugify(form.shopName), [form.shopName]);
-    const shareLink = `catalogapp.lk/shop/${slug}`;
-    const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(
-        "https://" + shareLink
-    )}`;
+    const slug = useMemo(() => createdStore?.slug || slugify(form.shopName), [createdStore, form.shopName]);
+    const shareLink = useMemo(() => {
+        if (createdStore?.store_url) return createdStore.store_url;
+        if (typeof window !== "undefined") return `${window.location.origin}/storefront/${slug}`;
+        return `https://se-10-mini-hackathon.vercel.app/storefront/${slug}`;
+    }, [createdStore, slug]);
+
+    const qrSrc = createdStore?.qr_code_data_url || `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(shareLink)}`;
 
     function validateStep1(): boolean {
         const e: Partial<Record<keyof FormState, string>> = {};
@@ -55,8 +62,53 @@ export default function StorefrontOnboarding() {
         return Object.keys(e).length === 0;
     }
 
+    async function handleCreateShop() {
+        if (!validateStep2()) return;
+        setLoading(true);
+        setApiError(null);
+
+        try {
+            // 1. Authenticate (Signup or Login)
+            let token = "";
+            try {
+                const authRes = await api.signup(form.email, form.password);
+                token = authRes.access_token;
+            } catch (err: unknown) {
+                const msg = err instanceof Error ? err.message : String(err);
+                if (msg.includes("already registered") || msg.includes("exists")) {
+                    const loginRes = await api.login(form.email, form.password);
+                    token = loginRes.access_token;
+                } else {
+                    throw err;
+                }
+            }
+
+            // 2. Onboard Store via backend API
+            const storeRes = await api.onboardStore(
+                {
+                    name: form.shopName,
+                    whatsapp_number: form.contact,
+                    description: form.description,
+                    category: form.category,
+                    location: form.location,
+                    logo_url: form.logoUrl,
+                    owner_name: form.ownerName,
+                },
+                token
+            );
+
+            setCreatedStore(storeRes);
+            setScreen("success");
+        } catch (err: unknown) {
+            const msg = err instanceof Error ? err.message : "Failed to create shop. Please try again.";
+            setApiError(msg);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     function copyLink() {
-        navigator.clipboard?.writeText("https://" + shareLink);
+        navigator.clipboard?.writeText(shareLink);
         setCopied(true);
         setTimeout(() => setCopied(false), 1800);
     }
@@ -80,14 +132,17 @@ export default function StorefrontOnboarding() {
                     form={form}
                     errors={errors}
                     update={update}
+                    loading={loading}
+                    apiError={apiError}
                     onBack={() => setScreen("register")}
-                    onNext={() => validateStep2() && setScreen("success")}
+                    onNext={handleCreateShop}
                 />
             )}
 
             {screen === "success" && (
                 <SuccessScreen
                     form={form}
+                    slug={slug}
                     shareLink={shareLink}
                     qrSrc={qrSrc}
                     copied={copied}

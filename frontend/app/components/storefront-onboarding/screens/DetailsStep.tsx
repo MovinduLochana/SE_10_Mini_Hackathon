@@ -11,9 +11,11 @@ interface DetailsStepProps {
     update: (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
     onBack: () => void;
     onNext: () => void;
+    loading?: boolean;
+    apiError?: string | null;
 }
 
-export function DetailsStep({ form, errors, update, onBack, onNext }: DetailsStepProps) {
+export function DetailsStep({ form, errors, update, onBack, onNext, loading, apiError }: DetailsStepProps) {
     return (
         <OnboardingShell step={2} onBack={onBack} backLabel="Back" form={form}>
             <h1
@@ -77,12 +79,28 @@ export function DetailsStep({ form, errors, update, onBack, onNext }: DetailsSte
                 </div>
             </div>
 
+            {apiError && (
+                <div
+                    style={{
+                        padding: "12px 14px",
+                        borderRadius: 8,
+                        background: "#fee2e2",
+                        color: "#991b1b",
+                        fontSize: 14,
+                        marginTop: 18,
+                        border: "1px solid #f87171",
+                    }}
+                >
+                    {apiError}
+                </div>
+            )}
+
             <div style={{ marginTop: 34, display: "flex", gap: 12 }}>
-                <button className="btn-ghost" onClick={onBack}>
+                <button className="btn-ghost" onClick={onBack} disabled={loading}>
                     Back
                 </button>
-                <button className="btn-primary" onClick={onNext}>
-                    Create my shop
+                <button className="btn-primary" onClick={onNext} disabled={loading}>
+                    {loading ? "Creating your shop..." : "Create my shop"}
                 </button>
             </div>
         </OnboardingShell>

@@ -9,12 +9,13 @@ interface SuccessScreenProps {
     form: FormState;
     shareLink: string;
     qrSrc: string;
+    slug?: string;
     copied: boolean;
     onCopy: () => void;
     onHome: () => void;
 }
 
-export function SuccessScreen({ form, shareLink, qrSrc, copied, onCopy, onHome }: SuccessScreenProps) {
+export function SuccessScreen({ form, shareLink, qrSrc, slug, copied, onCopy, onHome }: SuccessScreenProps) {
     return (
         <div style={{ maxWidth: 620, margin: "0 auto", padding: "72px 24px", textAlign: "center" }}>
             <div
@@ -95,10 +96,25 @@ export function SuccessScreen({ form, shareLink, qrSrc, copied, onCopy, onHome }
                         {copied ? <Check size={17} /> : <Copy size={17} />}
                     </button>
                 </div>
-                <div style={{ display: "flex", gap: 12, marginTop: 4 }}>
+                <div style={{ display: "flex", gap: 12, marginTop: 4, flexWrap: "wrap", justifyContent: "center" }}>
                     <button className="btn-primary" onClick={onCopy}>
                         {copied ? "Link copied" : "Copy link"}
                     </button>
+                    {slug && (
+                        <a
+                            href={`/storefront/${slug}`}
+                            className="btn-primary"
+                            style={{
+                                textDecoration: "none",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                background: "var(--ink)",
+                                color: "var(--paper)",
+                            }}
+                        >
+                            Visit Store Catalog
+                        </a>
+                    )}
                     <button className="btn-ghost" onClick={onHome}>
                         Back to home
                     </button>
