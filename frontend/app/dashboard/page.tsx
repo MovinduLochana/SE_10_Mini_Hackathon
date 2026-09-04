@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import {
     Store,
     QrCode,
@@ -31,6 +31,10 @@ export default function DashboardPage() {
     const [loading, setLoading] = useState(true);
     const [inventoryLoading, setInventoryLoading] = useState(false);
     const [actionLoadingId, setActionLoadingId] = useState<string | null>(null);
+    const [syncingProductIds, setSyncingProductIds] = useState<Set<string>>(new Set());
+
+    // Debounced pending stock adjustment tracking
+    const pendingAdjustments = useRef<Map<string, { delta: number; timer: NodeJS.Timeout; originalStock: number }>>(new Map());
 
     // Filters
     const [searchQuery, setSearchQuery] = useState("");
@@ -152,40 +156,80 @@ export default function DashboardPage() {
         }
     }
 
-    // ── Inline Restock Counter ──
-    async function handleAdjustStock(productId: string, delta: number) {
+    // Clean up debounced timers on unmount
+    useEffect(() => {
+        const pendingMap = pendingAdjustments.current;
+        return () => {
+            pendingMap.forEach((entry) => {
+                clearTimeout(entry.timer);
+            });
+            pendingMap.clear();
+        };
+    }, []);
+
+    // ── Non-Freezing Optimistic & Debounced Deferred Stock Restock ──
+    function handleAdjustStock(productId: string, delta: number) {
         if (!token) return;
-        setActionLoadingId(productId);
 
         const currentItem = inventory.find((i) => i.id === productId);
         if (!currentItem) return;
 
+        // 1. Calculate next optimistic stock
         const currentStock = currentItem.stock;
         const targetStock = Math.max(0, currentStock + delta);
+        const nextAvailable = targetStock > 0 ? (currentStock === 0 ? true : currentItem.is_available) : false;
 
-        // Optimistic update
+        // 2. Instant optimistic update in React state - ZERO UI freeze
         setInventory((prev) =>
             prev.map((item) =>
-                item.id === productId ? { ...item, stock: targetStock, is_available: targetStock > 0 } : item
+                item.id === productId
+                    ? { ...item, stock: targetStock, is_available: nextAvailable }
+                    : item
             )
         );
 
-        try {
-            const updated = await api.adjustProductStock(productId, { adjustment: delta }, token);
-            setInventory((prev) =>
-                prev.map((item) => (item.id === productId ? updated : item))
-            );
-        } catch (err) {
-            console.error("Adjust stock failed:", err);
-            // Revert
-            setInventory((prev) =>
-                prev.map((item) =>
-                    item.id === productId ? { ...item, stock: currentStock } : item
-                )
-            );
-        } finally {
-            setActionLoadingId(null);
+        // 3. Debounced deferred sync
+        const existing = pendingAdjustments.current.get(productId);
+        if (existing) {
+            clearTimeout(existing.timer);
         }
+
+        const accumulatedDelta = (existing ? existing.delta : 0) + delta;
+        const baseOriginalStock = existing ? existing.originalStock : currentStock;
+
+        // Set non-blocking syncing indicator
+        setSyncingProductIds((prev) => new Set(prev).add(productId));
+
+        const timer = setTimeout(async () => {
+            try {
+                const updated = await api.adjustProductStock(productId, { adjustment: accumulatedDelta }, token);
+                // Synchronize with backend canonical state
+                setInventory((prev) =>
+                    prev.map((item) => (item.id === productId ? updated : item))
+                );
+            } catch (err) {
+                console.error("Debounced adjust stock failed:", err);
+                // Rollback to original base stock on network/server error
+                setInventory((prev) =>
+                    prev.map((item) =>
+                        item.id === productId ? { ...item, stock: baseOriginalStock } : item
+                    )
+                );
+            } finally {
+                pendingAdjustments.current.delete(productId);
+                setSyncingProductIds((prev) => {
+                    const next = new Set(prev);
+                    next.delete(productId);
+                    return next;
+                });
+            }
+        }, 500);
+
+        pendingAdjustments.current.set(productId, {
+            delta: accumulatedDelta,
+            timer,
+            originalStock: baseOriginalStock,
+        });
     }
 
     // ── Delete Product ──
@@ -352,7 +396,7 @@ export default function DashboardPage() {
                         {selectedStore && (
                             <>
                                 <a
-                                    href={`/storefront/${selectedStore.slug}`}
+                                    href={`/store/${selectedStore.slug}`}
                                     target="_blank"
                                     rel="noreferrer"
                                     style={{
@@ -670,7 +714,6 @@ export default function DashboardPage() {
                                         justifyContent: "space-between",
                                         gap: 16,
                                         flexWrap: "wrap",
-                                        opacity: isActionLoading ? 0.7 : 1,
                                         transition: "all 0.15s ease",
                                     }}
                                 >
@@ -721,11 +764,11 @@ export default function DashboardPage() {
                                         )}
                                     </div>
 
-                                    {/* Inline Restock Counter */}
+                                    {/* Non-Freezing Inline Restock Counter */}
                                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                                         <button
                                             onClick={() => handleAdjustStock(item.id, -1)}
-                                            disabled={isActionLoading || item.stock <= 0}
+                                            disabled={item.stock <= 0}
                                             title="Decrement stock by 1"
                                             style={{
                                                 width: 28,
@@ -734,21 +777,39 @@ export default function DashboardPage() {
                                                 border: "1px solid var(--line, #e7e5e4)",
                                                 backgroundColor: "transparent",
                                                 cursor: item.stock <= 0 ? "not-allowed" : "pointer",
+                                                opacity: item.stock <= 0 ? 0.35 : 1,
                                                 fontWeight: 700,
                                                 fontSize: 14,
                                                 display: "flex",
                                                 alignItems: "center",
                                                 justifyContent: "center",
+                                                userSelect: "none",
                                             }}
                                         >
                                             -
                                         </button>
-                                        <span style={{ fontWeight: 600, fontSize: 14, minWidth: 32, textAlign: "center" }}>
-                                            {item.stock}
-                                        </span>
+                                        <div style={{ position: "relative", minWidth: 36, textAlign: "center", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+                                            <span style={{ fontWeight: 600, fontSize: 14 }}>
+                                                {item.stock}
+                                            </span>
+                                            {syncingProductIds.has(item.id) && (
+                                                <span
+                                                    title="Syncing..."
+                                                    style={{
+                                                        position: "absolute",
+                                                        top: -3,
+                                                        right: -6,
+                                                        width: 6,
+                                                        height: 6,
+                                                        borderRadius: "50%",
+                                                        backgroundColor: "var(--teal, #0d9488)",
+                                                        boxShadow: "0 0 4px var(--teal, #0d9488)",
+                                                    }}
+                                                />
+                                            )}
+                                        </div>
                                         <button
                                             onClick={() => handleAdjustStock(item.id, 1)}
-                                            disabled={isActionLoading}
                                             title="Restock +1"
                                             style={{
                                                 width: 28,
@@ -762,13 +823,13 @@ export default function DashboardPage() {
                                                 display: "flex",
                                                 alignItems: "center",
                                                 justifyContent: "center",
+                                                userSelect: "none",
                                             }}
                                         >
                                             +
                                         </button>
                                         <button
                                             onClick={() => handleAdjustStock(item.id, 5)}
-                                            disabled={isActionLoading}
                                             title="Quick restock +5"
                                             style={{
                                                 padding: "4px 8px",
@@ -779,6 +840,7 @@ export default function DashboardPage() {
                                                 cursor: "pointer",
                                                 fontWeight: 600,
                                                 fontSize: 11,
+                                                userSelect: "none",
                                             }}
                                         >
                                             +5
