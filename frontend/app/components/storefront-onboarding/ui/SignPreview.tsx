@@ -1,8 +1,8 @@
 "use client";
 
 interface SignPreviewProps {
-    shopName: string;
-    category: string;
+    shopName?: string;
+    category?: string;
     ownerName?: string;
     logoUrl?: string;
     size?: "sm" | "md";
