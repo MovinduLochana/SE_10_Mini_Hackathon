@@ -4,7 +4,7 @@ import { Store, QrCode, PackageSearch, Sparkles } from "lucide-react";
 import { SignPreview } from "../ui/SignPreview";
 import { ValueItem } from "../ui/ValueItem";
 
-export function Landing({ onStart }: { onStart: () => void }) {
+export function Landing({ onStart, onLogin }: { onStart: () => void, onLogin: () => void }) {
     return (
         <div>
             {/* Nav */}
@@ -31,7 +31,14 @@ export function Landing({ onStart }: { onStart: () => void }) {
                     <Store size={19} /> Stallfront
                 </div>
                 <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
-                    <span style={{ fontSize: 14, opacity: 0.7, cursor: "pointer" }}>Log in</span>
+                    <span 
+                        style={{ fontSize: 14, opacity: 0.7, cursor: "pointer" }}
+                        onClick={onLogin}
+                        role="button"
+                        tabIndex={0}
+                    >
+                        Log in
+                    </span>
                     <button
                         className="btn-primary"
                         onClick={onStart}

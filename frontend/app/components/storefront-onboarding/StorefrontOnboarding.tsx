@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { Landing } from "./screens/Landing";
 import { RegisterStep } from "./screens/RegisterStep";
+import { LoginStep } from "./screens/LoginStep";
 import { DetailsStep } from "./screens/DetailsStep";
 import { SuccessScreen } from "./screens/SuccessScreen";
 import { slugify } from "./utils";
@@ -115,7 +116,20 @@ export default function StorefrontOnboarding() {
 
     return (
         <div className="app-root">
-            {screen === "landing" && <Landing onStart={() => setScreen("register")} />}
+            {screen === "landing" && <Landing onStart={() => setScreen("register")} onLogin={() => setScreen("login")} />}
+
+            {screen === "login" && (
+                <LoginStep
+                    onBack={() => setScreen("landing")}
+                    onSuccess={(store) => {
+                        setCreatedStore(store);
+                        setScreen("success");
+                    }}
+                    onNoStore={() => {
+                        setScreen("register");
+                    }}
+                />
+            )}
 
             {screen === "register" && (
                 <RegisterStep

@@ -129,6 +129,14 @@ export const api = {
     return request<StoreResponse>(`/api/stores/${slug}`);
   },
 
+  async getMyStores(token: string) {
+    return request<StoreResponse[]>("/api/stores/my/stores", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
   // Products & Public Catalog
   async getProducts(
     slug: string,

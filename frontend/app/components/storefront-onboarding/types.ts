@@ -24,4 +24,4 @@ export interface FormState {
     logoUrl: string;
 }
 
-export type Screen = "landing" | "register" | "details" | "success";
+export type Screen = "landing" | "login" | "register" | "details" | "success";
