@@ -31,17 +31,11 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS Middleware for Next.js Frontend (Supports Localhost & Vercel)
-origins = settings.CORS_ORIGINS
-if isinstance(origins, str):
-    origins = [origins]
-if "https://se-10-mini-hackathon.vercel.app" not in origins:
-    origins.append("https://se-10-mini-hackathon.vercel.app")
-
+# CORS Middleware for Next.js Frontend (Supports Localhost, Vercel, Railway & all preview deployments)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins != ["*"] else ["*"],
-    allow_origin_regex=r"https?://.*\.vercel\.app|https?://localhost(:\d+)?|https?://127\.0\.0\.1(:\d+)?",
+    allow_origins=["*"],
+    allow_origin_regex=r".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
