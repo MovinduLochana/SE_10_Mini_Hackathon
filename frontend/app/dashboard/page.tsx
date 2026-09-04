@@ -17,7 +17,9 @@ import {
     RefreshCw,
     Download,
     Eye,
-    EyeOff
+    EyeOff,
+    Pencil,
+    Check
 } from "lucide-react";
 import Image from "next/image";
 import { api, StoreResponse, ProductResponse } from "../lib/api";
@@ -29,9 +31,13 @@ export default function DashboardPage() {
     const [selectedStore, setSelectedStore] = useState<StoreResponse | null>(null);
     const [inventory, setInventory] = useState<ProductResponse[]>([]);
     const [loading, setLoading] = useState(true);
-    const [inventoryLoading, setInventoryLoading] = useState(false);
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+    const [inventoryLoading, setInventoryLoading] = useState(true);
+    const [inventoryError, setInventoryError] = useState<string | null>(null);
     const [actionLoadingId, setActionLoadingId] = useState<string | null>(null);
     const [syncingProductIds, setSyncingProductIds] = useState<Set<string>>(new Set());
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
 
     // Debounced pending stock adjustment tracking
     const pendingAdjustments = useRef<Map<string, { delta: number; timer: NodeJS.Timeout; originalStock: number }>>(new Map());
@@ -43,6 +49,7 @@ export default function DashboardPage() {
 
     // Modals
     const [showAddModal, setShowAddModal] = useState(false);
+    const [editingProduct, setEditingProduct] = useState<ProductResponse | null>(null);
     const [showQrModal, setShowQrModal] = useState(false);
     const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
@@ -52,18 +59,29 @@ export default function DashboardPage() {
     const [loginError, setLoginError] = useState("");
     const [isLoggingIn, setIsLoggingIn] = useState(false);
 
+    function showToast(msg: string) {
+        setToastMessage(msg);
+        setTimeout(() => setToastMessage(null), 2500);
+    }
+
     useEffect(() => {
         const storedToken = typeof window !== "undefined" ? localStorage.getItem("polalink_token") : null;
         if (storedToken) {
             setToken(storedToken);
+            setIsCheckingAuth(false);
             loadMerchantStores(storedToken);
         } else {
+            setIsCheckingAuth(false);
             setLoading(false);
+            setIsInitialLoad(false);
+            setInventoryLoading(false);
         }
     }, []);
 
     async function loadMerchantStores(authToken: string) {
         setLoading(true);
+        setInventoryLoading(true);
+        setInventoryError(null);
         try {
             const myStores = await api.getMyStores(authToken);
             setStores(myStores);
@@ -72,22 +90,29 @@ export default function DashboardPage() {
                 const savedSlug = localStorage.getItem("polalink_slug");
                 const matched = myStores.find((s) => s.slug === savedSlug) || myStores[0];
                 setSelectedStore(matched);
-                loadInventory(matched.slug, authToken);
+                await loadInventory(matched.slug, authToken);
+            } else {
+                setInventoryLoading(false);
             }
-        } catch (err) {
+        } catch (err: unknown) {
             console.error("Failed to load merchant stores:", err);
+            setInventoryError(err instanceof Error ? err.message : "Failed to load stores.");
+            setInventoryLoading(false);
         } finally {
             setLoading(false);
+            setIsInitialLoad(false);
         }
     }
 
     async function loadInventory(slug: string, authToken: string) {
         setInventoryLoading(true);
+        setInventoryError(null);
         try {
             const items = await api.getMerchantInventory(slug, authToken);
             setInventory(items);
-        } catch (err) {
+        } catch (err: unknown) {
             console.error("Failed to load inventory:", err);
+            setInventoryError(err instanceof Error ? err.message : "Failed to load inventory items.");
         } finally {
             setInventoryLoading(false);
         }
@@ -107,10 +132,12 @@ export default function DashboardPage() {
             const authToken = res.access_token;
             localStorage.setItem("polalink_token", authToken);
             setToken(authToken);
+            setIsInitialLoad(true);
             await loadMerchantStores(authToken);
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : "Failed to log in.";
             setLoginError(msg);
+            setIsInitialLoad(false);
         } finally {
             setIsLoggingIn(false);
         }
@@ -286,6 +313,65 @@ export default function DashboardPage() {
         inventory.forEach((i) => set.add(i.category));
         return Array.from(set);
     }, [inventory]);
+
+function DashboardSkeleton() {
+    return (
+        <div className="app-root animate-pulse" style={{ minHeight: "100vh", backgroundColor: "var(--cream, #f5f4ef)", padding: "24px 16px 64px" }}>
+            <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+                {/* Header Skeleton */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                        <div style={{ width: 40, height: 40, borderRadius: 10, backgroundColor: "rgba(0,0,0,0.08)" }} />
+                        <div>
+                            <div style={{ width: 170, height: 22, borderRadius: 6, backgroundColor: "rgba(0,0,0,0.08)", marginBottom: 6 }} />
+                            <div style={{ width: 240, height: 12, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.04)" }} />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Profile Card Skeleton */}
+                <div style={{ backgroundColor: "var(--paper, #fcfbf7)", border: "1px solid var(--line, #e7e5e4)", borderRadius: 14, padding: "18px 20px", marginBottom: 20, display: "flex", gap: 16, alignItems: "center" }}>
+                    <div style={{ width: 48, height: 48, borderRadius: 10, backgroundColor: "rgba(0,0,0,0.07)" }} />
+                    <div style={{ flex: 1 }}>
+                        <div style={{ width: 140, height: 16, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.08)", marginBottom: 8 }} />
+                        <div style={{ width: 280, height: 12, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.05)" }} />
+                    </div>
+                </div>
+
+                {/* Metrics Skeleton */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12, marginBottom: 24 }}>
+                    {[1, 2, 3, 4].map((i) => (
+                        <div key={i} style={{ backgroundColor: "var(--paper, #fcfbf7)", padding: "16px 18px", borderRadius: 12, border: "1px solid var(--line, #e7e5e4)" }}>
+                            <div style={{ width: 80, height: 12, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.06)", marginBottom: 8 }} />
+                            <div style={{ width: 42, height: 24, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.1)" }} />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Controls Skeleton */}
+                <div style={{ backgroundColor: "var(--paper, #fcfbf7)", height: 60, borderRadius: 14, border: "1px solid var(--line, #e7e5e4)", marginBottom: 16 }} />
+
+                {/* Rows Skeleton */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                    {[1, 2, 3, 4].map((i) => (
+                        <div key={i} style={{ backgroundColor: "var(--paper, #fcfbf7)", height: 74, borderRadius: 12, border: "1px solid var(--line, #e7e5e4)", display: "flex", alignItems: "center", padding: "0 18px", gap: 14 }}>
+                            <div style={{ width: 48, height: 48, borderRadius: 8, backgroundColor: "rgba(0,0,0,0.06)" }} />
+                            <div style={{ flex: 1 }}>
+                                <div style={{ width: "32%", height: 15, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.08)", marginBottom: 6 }} />
+                                <div style={{ width: "18%", height: 11, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.05)" }} />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+    // ── Auth Checking & Initial Loading State ──
+    if (isCheckingAuth || (token && (isInitialLoad || loading))) {
+        return <DashboardSkeleton />;
+    }
 
     // ── Unauthenticated State ──
     if (!token) {
@@ -654,10 +740,95 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Inventory List */}
-                {inventoryLoading ? (
-                    <div style={{ padding: 48, textAlign: "center", color: "var(--ink)", opacity: 0.6 }}>
-                        <Loader2 size={28} className="animate-spin" style={{ margin: "0 auto 12px" }} />
-                        <p>Syncing live inventory...</p>
+                {loading || inventoryLoading ? (
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                        {[1, 2, 3, 4].map((i) => (
+                            <div
+                                key={i}
+                                style={{
+                                    backgroundColor: "var(--paper, #fcfbf7)",
+                                    height: 74,
+                                    borderRadius: 12,
+                                    border: "1px solid var(--line, #e7e5e4)",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    padding: "0 18px",
+                                    gap: 14,
+                                    opacity: 0.65,
+                                }}
+                                className="animate-pulse"
+                            >
+                                <div style={{ width: 48, height: 48, borderRadius: 8, backgroundColor: "rgba(0,0,0,0.06)" }} />
+                                <div style={{ flex: 1 }}>
+                                    <div style={{ width: "32%", height: 15, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.08)", marginBottom: 6 }} />
+                                    <div style={{ width: "18%", height: 11, borderRadius: 4, backgroundColor: "rgba(0,0,0,0.05)" }} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : inventoryError ? (
+                    <div
+                        style={{
+                            backgroundColor: "var(--paper, #fcfbf7)",
+                            border: "1px dashed var(--line, #e7e5e4)",
+                            borderRadius: 14,
+                            padding: 36,
+                            textAlign: "center",
+                        }}
+                    >
+                        <AlertTriangle size={32} color="var(--terra, #c2410c)" style={{ margin: "0 auto 10px" }} />
+                        <h3 style={{ margin: "0 0 6px", fontSize: 17, color: "var(--ink, #1c1917)" }}>Unable to load inventory</h3>
+                        <p style={{ margin: "0 0 16px", fontSize: 13.5, opacity: 0.7 }}>{inventoryError}</p>
+                        <button
+                            onClick={() => {
+                                if (token && selectedStore) {
+                                    loadInventory(selectedStore.slug, token);
+                                }
+                            }}
+                            style={{
+                                padding: "8px 18px",
+                                borderRadius: 8,
+                                border: "none",
+                                backgroundColor: "var(--teal, #0d9488)",
+                                color: "#fff",
+                                fontSize: 13,
+                                fontWeight: 600,
+                                cursor: "pointer",
+                            }}
+                        >
+                            Retry Loading
+                        </button>
+                    </div>
+                ) : stores.length === 0 ? (
+                    <div
+                        style={{
+                            backgroundColor: "var(--paper, #fcfbf7)",
+                            border: "1px dashed var(--line, #e7e5e4)",
+                            borderRadius: 14,
+                            padding: 48,
+                            textAlign: "center",
+                        }}
+                    >
+                        <Store size={36} color="var(--teal, #0d9488)" style={{ margin: "0 auto 12px", opacity: 0.6 }} />
+                        <h3 style={{ margin: "0 0 6px", fontSize: 18 }}>No store found</h3>
+                        <p style={{ margin: "0 0 18px", fontSize: 13.5, opacity: 0.65 }}>
+                            You haven&apos;t created a store yet. Set up your shop profile to start managing products.
+                        </p>
+                        <a
+                            href="/"
+                            style={{
+                                display: "inline-block",
+                                padding: "9px 20px",
+                                borderRadius: 8,
+                                backgroundColor: "var(--teal, #0d9488)",
+                                color: "#fff",
+                                fontSize: 13.5,
+                                fontWeight: 600,
+                                textDecoration: "none",
+                            }}
+                        >
+                            + Create Shop
+                        </a>
                     </div>
                 ) : filteredInventory.length === 0 ? (
                     <div
@@ -872,12 +1043,37 @@ export default function DashboardPage() {
                                         </button>
                                     </div>
 
-                                    {/* Delete Item */}
-                                    <div>
+                                    {/* Actions: Edit & Delete */}
+                                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                                        <button
+                                            onClick={() => {
+                                                setEditingProduct(item);
+                                                setShowAddModal(true);
+                                            }}
+                                            title="Edit product details"
+                                            style={{
+                                                background: "none",
+                                                border: "1px solid var(--line, #e7e5e4)",
+                                                borderRadius: 6,
+                                                color: "var(--ink, #1c1917)",
+                                                opacity: 0.75,
+                                                cursor: "pointer",
+                                                padding: "5px 7px",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                            }}
+                                        >
+                                            <Pencil size={14} />
+                                        </button>
+
                                         {deleteConfirmId === item.id ? (
                                             <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
                                                 <button
-                                                    onClick={() => handleDeleteProduct(item.id)}
+                                                    onClick={() => {
+                                                        handleDeleteProduct(item.id);
+                                                        showToast("Product deleted.");
+                                                    }}
                                                     style={{
                                                         padding: "5px 8px",
                                                         borderRadius: 6,
@@ -916,6 +1112,8 @@ export default function DashboardPage() {
                                                     color: "#9ca3af",
                                                     cursor: "pointer",
                                                     padding: 6,
+                                                    display: "flex",
+                                                    alignItems: "center",
                                                 }}
                                             >
                                                 <Trash2 size={16} />
@@ -929,16 +1127,52 @@ export default function DashboardPage() {
                 )}
             </div>
 
-            {/* Product Creation Modal (with AI Copywriter & Auto-Categorizer) */}
+            {/* Product Creation & Editing Modal */}
             {showAddModal && selectedStore && token && (
                 <ProductFormModal
                     storeSlug={selectedStore.slug}
                     token={token}
-                    onClose={() => setShowAddModal(false)}
+                    initialProduct={editingProduct}
+                    onClose={() => {
+                        setShowAddModal(false);
+                        setEditingProduct(null);
+                    }}
                     onProductCreated={(newProduct) => {
                         setInventory((prev) => [newProduct, ...prev]);
+                        showToast(`Added "${newProduct.title}" to catalog.`);
+                    }}
+                    onProductUpdated={(updatedProduct) => {
+                        setInventory((prev) =>
+                            prev.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
+                        );
+                        showToast(`Updated "${updatedProduct.title}".`);
                     }}
                 />
+            )}
+
+            {/* Global Toast Notification */}
+            {toastMessage && (
+                <div
+                    style={{
+                        position: "fixed",
+                        bottom: 24,
+                        right: 24,
+                        backgroundColor: "var(--ink, #1c1917)",
+                        color: "var(--paper, #fcfbf7)",
+                        padding: "10px 18px",
+                        borderRadius: 8,
+                        fontSize: 13.5,
+                        fontWeight: 500,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                        zIndex: 1200,
+                        boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+                    }}
+                >
+                    <Check size={15} color="var(--teal, #0d9488)" />
+                    <span>{toastMessage}</span>
+                </div>
             )}
 
             {/* QR Code Modal */}
