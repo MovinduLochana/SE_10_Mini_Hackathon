@@ -6,6 +6,7 @@ import { StorefrontHeader } from "./StorefrontHeader";
 import { ControlsBar } from "./ControlsBar";
 import { ProductCard } from "./ProductCard";
 import { EmptyState } from "./EmptyState";
+import { FloatingCart } from "./FloatingCart";
 import type { Product, ShopInfo, FilterState, SortKey } from "./types";
 
 interface StorefrontHomePageProps {
@@ -31,6 +32,24 @@ const DEFAULT_FILTERS: FilterState = {
 export function StorefrontHomePage({ shop, products, onProductClick }: StorefrontHomePageProps) {
     const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
     const [copied, setCopied] = useState(false);
+    const [cart, setCart] = useState<Record<string, number>>({});
+
+    function handleUpdateQuantity(productId: string, delta: number) {
+        setCart((prev) => {
+            const current = prev[productId] || 0;
+            const next = current + delta;
+            if (next <= 0) {
+                const copy = { ...prev };
+                delete copy[productId];
+                return copy;
+            }
+            return { ...prev, [productId]: next };
+        });
+    }
+
+    function handleClearCart() {
+        setCart({});
+    }
 
     function patchFilters(patch: Partial<FilterState>) {
         setFilters((f) => ({ ...f, ...patch }));
@@ -163,6 +182,8 @@ export function StorefrontHomePage({ shop, products, onProductClick }: Storefron
                                 key={product.id}
                                 product={product}
                                 onClick={onProductClick}
+                                cartQuantity={cart[product.id] || 0}
+                                onUpdateQuantity={handleUpdateQuantity}
                             />
                         ))}
                     </div>
@@ -172,6 +193,15 @@ export function StorefrontHomePage({ shop, products, onProductClick }: Storefron
                         onClearFilters={clearFilters}
                     />
                 )}
+
+                {/* In-page Floating Cart & Live WhatsApp Checkout */}
+                <FloatingCart
+                    cart={cart}
+                    products={products}
+                    storeSlug={shop.slug}
+                    onUpdateQuantity={handleUpdateQuantity}
+                    onClearCart={handleClearCart}
+                />
             </div>
         </div>
     );

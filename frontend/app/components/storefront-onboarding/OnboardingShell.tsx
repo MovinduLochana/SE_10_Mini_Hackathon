@@ -16,7 +16,7 @@ export function OnboardingShell({
     step,
     onBack,
     backLabel,
-    form,
+    form = {},
     children,
 }: OnboardingShellProps) {
     return (

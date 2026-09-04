@@ -28,16 +28,25 @@ export function LoginStep({ onBack, onSuccess, onNoStore }: LoginStepProps) {
         try {
             const loginRes = await api.login(email, password);
             const token = loginRes.access_token;
+            if (typeof window !== "undefined") {
+                localStorage.setItem("polalink_token", token);
+            }
             
             // Check if user has a store
             const stores = await api.getMyStores(token);
             if (stores && stores.length > 0) {
+                if (typeof window !== "undefined") {
+                    localStorage.setItem("polalink_slug", stores[0].slug);
+                    window.location.href = "/dashboard";
+                    return;
+                }
                 onSuccess(stores[0]);
             } else {
                 onNoStore();
             }
-        } catch (err: any) {
-            setError(err.message || "Failed to log in.");
+        } catch (err: unknown) {
+            const msg = err instanceof Error ? err.message : "Failed to log in.";
+            setError(msg);
         } finally {
             setLoading(false);
         }
