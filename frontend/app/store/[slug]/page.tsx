@@ -1,6 +1,6 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { StorefrontClientView } from "./StorefrontClientView";
-import { MOCK_SHOP, MOCK_PRODUCTS } from "../../components/storefront/types";
 import type { Product, ShopInfo } from "../../components/storefront/types";
 import { api } from "../../lib/api";
 
@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function StoreCatalogPage({ params }: PageProps) {
     const { slug } = await params;
 
-    let shop: ShopInfo = MOCK_SHOP;
-    let products: Product[] = MOCK_PRODUCTS;
+    let shop: ShopInfo | null = null;
+    let products: Product[] = [];
 
     try {
         const [storeData, prodsData] = await Promise.all([
@@ -58,7 +58,7 @@ export default async function StoreCatalogPage({ params }: PageProps) {
             };
         }
 
-        if (prodsData && prodsData.length > 0) {
+        if (Array.isArray(prodsData)) {
             products = prodsData.map((p) => ({
                 id: p.id,
                 name: p.title,
@@ -72,7 +72,11 @@ export default async function StoreCatalogPage({ params }: PageProps) {
             }));
         }
     } catch (err) {
-        console.warn(`[StoreCatalogPage] Error fetching store data for slug "${slug}", using fallback:`, err);
+        console.warn(`[StoreCatalogPage] Error fetching store data for slug "${slug}":`, err);
+    }
+
+    if (!shop) {
+        notFound();
     }
 
     return <StorefrontClientView shop={shop} products={products} />;

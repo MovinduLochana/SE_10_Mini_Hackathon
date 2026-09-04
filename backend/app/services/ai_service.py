@@ -10,20 +10,26 @@ import random
 
 # Sri Lankan Category Keyword Heuristic Map
 CATEGORY_PATTERNS = {
-    "Grocery & food": [
+    "Spices": [
         "cinnamon", "kurundu", "pepper", "gam miris", "cardamom", "clove", "karabu",
         "goraka", "turmeric", "kaha", "curry powder", "thunapaha", "chili", "miris",
-        "cumin", "suduru", "fenugreek", "uluhal", "nutmeg", "sadikka", "spice",
+        "cumin", "suduru", "fenugreek", "uluhal", "nutmeg", "sadikka", "spice"
+    ],
+    "Sweets": [
+        "kithul", "treacle", "pani", "jaggery", "hakuru", "kavum", "kokis", "dodol",
+        "thala", "aluwa", "halapa", "pani walalu", "muscat", "sweet", "dessert"
+    ],
+    "Homemade": [
+        "pickle", "achcharu", "chutney", "seeni sambol", "lunu miris", "pol sambol",
+        "katta sambol", "paste", "homemade", "sauce", "chili paste", "jam", "preserved"
+    ],
+    "Grocery & food": [
         "banana", "kesel", "mango", "avocado", "papaya", "coconut", "pol", "gotukola",
         "mukunuwenna", "dambala", "drumstick", "murunga", "vegetable", "fruit", "leaf",
-        "fresh", "organic green", "lime", "dehi", "pickle", "achcharu", "chutney",
-        "seeni sambol", "lunu miris", "pol sambol", "paste", "homemade", "sauce",
-        "chili paste", "jam", "preserved", "tea", "ceylon tea", "coffee", "king coconut",
+        "fresh", "organic green", "lime", "dehi", "tea", "ceylon tea", "coffee", "king coconut",
         "thambili", "herbal", "kothalahimbutu", "belimal", "ranawara", "drink", "juice",
         "beverage", "roast paan", "bun", "samosa", "pastry", "patty", "roti", "bread",
-        "pol roti", "short eats", "kithul", "treacle", "pani", "jaggery", "hakuru",
-        "kavum", "kokis", "dodol", "thala", "aluwa", "halapa", "pani walalu", "muscat",
-        "sweet", "dessert", "grocery", "food"
+        "pol roti", "short eats", "grocery", "food"
     ],
     "Fashion & apparel": [
         "shirt", "t-shirt", "trouser", "dress", "saree", "sarong", "batik", "handloom",
