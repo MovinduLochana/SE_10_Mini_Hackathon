@@ -22,14 +22,14 @@ def build_whatsapp_order_message(
     Constructs a readable, polite Sri Lankan WhatsApp checkout message.
     """
     lines = [
-        f"🛍️ *New Order for {store_name}*",
+        f"*New Order for {store_name}*",
         "━━━━━━━━━━━━━━━━━━━━━━"
     ]
 
     if customer_name:
-        lines.append(f"👤 *Customer:* {customer_name.strip()}")
+        lines.append(f"*Customer:* {customer_name.strip()}")
     if customer_phone:
-        lines.append(f"📞 *Contact:* {customer_phone.strip()}")
+        lines.append(f"*Contact:* {customer_phone.strip()}")
 
     lines.append("")
     lines.append("*Ordered Items:*")
@@ -37,14 +37,14 @@ def build_whatsapp_order_message(
         lines.append(f"• {item.quantity}x {item.title} — {format_lkr(item.subtotal)}")
 
     lines.append("━━━━━━━━━━━━━━━━━━━━━━")
-    lines.append(f"💰 *Total Amount:* {format_lkr(total_amount)}")
+    lines.append(f"*Total Amount:* {format_lkr(total_amount)}")
 
     if delivery_notes and delivery_notes.strip():
         lines.append("")
-        lines.append(f"📍 *Delivery / Notes:* {delivery_notes.strip()}")
+        lines.append(f"*Delivery / Notes:* {delivery_notes.strip()}")
 
     lines.append("━━━━━━━━━━━━━━━━━━━━━━")
-    lines.append("_Sent via PolaLink LK_ 🇱🇰")
+    lines.append("_Sent via StallFront")
 
     return "\n".join(lines)
 
