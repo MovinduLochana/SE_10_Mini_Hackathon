@@ -1,26 +1,123 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Design tokens & base ── */
+.app-root {
+  --paper: #f3efe2;
+  --ink: #1c2b22;
+  --marigold: #d9a62e;
+  --teal: #2b6357;
+  --line: #c9bfa0;
+  --danger: #b0432d;
+
+  background: var(--paper);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(28, 43, 34, 0.05),
+    rgba(28, 43, 34, 0.05) 1px,
+    transparent 1px,
+    transparent 30px
+  );
+  font-family: var(--font-work-sans), "Work Sans", sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ── Sign board ── */
+.sign-board {
+  background: linear-gradient(160deg, #223b2c, #16261c);
+  border-radius: 10px;
+  box-shadow: 0 10px 22px rgba(17, 26, 20, 0.28);
+  border: 1px solid rgba(217, 166, 46, 0.35);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: var(--teal);
+  color: var(--paper);
+  border: none;
+  border-radius: 8px;
+  padding: 13px 24px;
+  font-family: var(--font-work-sans), "Work Sans", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease;
+}
+.btn-primary:hover {
+  background: #235148;
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 22px;
+  font-family: var(--font-work-sans), "Work Sans", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn-ghost:hover {
+  border-color: var(--ink);
+}
+
+/* ── Form helpers ── */
+.field-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* ── Layouts ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 860px) {
+  .two-col {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.value-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+@media (min-width: 700px) {
+  .value-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
 }
