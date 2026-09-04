@@ -17,7 +17,7 @@ export default function StorefrontPage({
 
     const [selected, setSelected] = useState<Product | null>(null);
     const [shop, setShop] = useState<ShopInfo>(MOCK_SHOP);
-    const [products, setProducts] = useState<Product[]>(MOCK_PRODUCTS);
+    const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function StorefrontPage({
                         slug: storeData.slug,
                     });
 
-                    if (prodsData && prodsData.length > 0) {
+                    if (prodsData) {
                         setProducts(
                             prodsData.map((p) => ({
                                 id: p.id,
