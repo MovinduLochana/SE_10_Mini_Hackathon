@@ -102,7 +102,7 @@ export function SuccessScreen({ form, shareLink, qrSrc, slug, copied, onCopy, on
                     </button>
                     {slug && (
                         <a
-                            href={`/storefront/${slug}`}
+                            href={`/store/${slug}`}
                             className="btn-primary"
                             style={{
                                 textDecoration: "none",
