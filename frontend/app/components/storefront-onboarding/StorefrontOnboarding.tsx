@@ -38,8 +38,8 @@ export default function StorefrontOnboarding() {
     const slug = useMemo(() => createdStore?.slug || slugify(form.shopName), [createdStore, form.shopName]);
     const shareLink = useMemo(() => {
         if (createdStore?.store_url) return createdStore.store_url;
-        if (typeof window !== "undefined") return `${window.location.origin}/storefront/${slug}`;
-        return `https://se-10-mini-hackathon.vercel.app/storefront/${slug}`;
+        if (typeof window !== "undefined") return `${window.location.origin}/store/${slug}`;
+        return `https://se-10-mini-hackathon.vercel.app/store/${slug}`;
     }, [createdStore, slug]);
 
     const qrSrc = createdStore?.qr_code_data_url || `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(shareLink)}`;
