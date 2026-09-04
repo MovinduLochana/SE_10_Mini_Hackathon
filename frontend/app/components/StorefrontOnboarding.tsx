@@ -11,6 +11,7 @@ import {
     QrCode,
 } from "lucide-react";
 import Image from "next/image";
+import { api, StoreResponse } from "../lib/api";
 
 // ── Constants ───────────────────────────────────────────────────────────────
 
@@ -440,6 +441,9 @@ function Landing({ onStart }: { onStart: () => void }) {
 export default function StorefrontOnboarding() {
     const [screen, setScreen] = useState<Screen>("landing");
     const [copied, setCopied] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [apiError, setApiError] = useState<string | null>(null);
+    const [createdStore, setCreatedStore] = useState<StoreResponse | null>(null);
     const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
 
     const [form, setForm] = useState<FormState>({
@@ -458,11 +462,14 @@ export default function StorefrontOnboarding() {
         (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
             setForm((f) => ({ ...f, [key]: e.target.value }));
 
-    const slug = useMemo(() => slugify(form.shopName), [form.shopName]);
-    const shareLink = `catalogapp.lk/shop/${slug}`;
-    const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(
-        "https://" + shareLink
-    )}`;
+    const slug = useMemo(() => createdStore?.slug || slugify(form.shopName), [createdStore, form.shopName]);
+    const shareLink = useMemo(() => {
+        if (createdStore?.store_url) return createdStore.store_url;
+        if (typeof window !== "undefined") return `${window.location.origin}/store/${slug}`;
+        return `https://se-10-mini-hackathon.vercel.app/store/${slug}`;
+    }, [createdStore, slug]);
+
+    const qrSrc = createdStore?.qr_code_data_url || `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(shareLink)}`;
 
     function validateStep1(): boolean {
         const e: Partial<Record<keyof FormState, string>> = {};
@@ -483,8 +490,53 @@ export default function StorefrontOnboarding() {
         return Object.keys(e).length === 0;
     }
 
+    async function handleCreateShop() {
+        if (!validateStep2()) return;
+        setLoading(true);
+        setApiError(null);
+
+        try {
+            // 1. Authenticate (Signup or Login)
+            let token = "";
+            try {
+                const authRes = await api.signup(form.email, form.password);
+                token = authRes.access_token;
+            } catch (err: unknown) {
+                const msg = err instanceof Error ? err.message : String(err);
+                if (msg.includes("already registered") || msg.includes("exists")) {
+                    const loginRes = await api.login(form.email, form.password);
+                    token = loginRes.access_token;
+                } else {
+                    throw err;
+                }
+            }
+
+            // 2. Onboard Store via backend API
+            const storeRes = await api.onboardStore(
+                {
+                    name: form.shopName,
+                    whatsapp_number: form.contact,
+                    description: form.description,
+                    category: form.category,
+                    location: form.location,
+                    logo_url: form.logoUrl,
+                    owner_name: form.ownerName,
+                },
+                token
+            );
+
+            setCreatedStore(storeRes);
+            setScreen("success");
+        } catch (err: unknown) {
+            const msg = err instanceof Error ? err.message : "Failed to create shop. Please try again.";
+            setApiError(msg);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     function copyLink() {
-        navigator.clipboard?.writeText("https://" + shareLink);
+        navigator.clipboard?.writeText(shareLink);
         setCopied(true);
         setTimeout(() => setCopied(false), 1800);
     }
@@ -628,15 +680,32 @@ export default function StorefrontOnboarding() {
                         </div>
                     </div>
 
+                    {apiError && (
+                        <div
+                            style={{
+                                padding: "12px 14px",
+                                borderRadius: 8,
+                                background: "#fee2e2",
+                                color: "#991b1b",
+                                fontSize: 14,
+                                marginTop: 18,
+                                border: "1px solid #f87171",
+                            }}
+                        >
+                            {apiError}
+                        </div>
+                    )}
+
                     <div style={{ marginTop: 34, display: "flex", gap: 12 }}>
-                        <button className="btn-ghost" onClick={() => setScreen("register")}>
+                        <button className="btn-ghost" onClick={() => setScreen("register")} disabled={loading}>
                             Back
                         </button>
                         <button
                             className="btn-primary"
-                            onClick={() => validateStep2() && setScreen("success")}
+                            onClick={handleCreateShop}
+                            disabled={loading}
                         >
-                            Create my shop
+                            {loading ? "Creating your shop..." : "Create my shop"}
                         </button>
                     </div>
                 </OnboardingShell>
@@ -690,9 +759,9 @@ export default function StorefrontOnboarding() {
                         <Image
                             src={qrSrc}
                             alt="QR code linking to your storefront"
-                            width={140}
-                            height={140}
-                            style={{ borderRadius: 8 }}
+                            width={160}
+                            height={160}
+                            style={{ borderRadius: 8, background: "#fff", padding: 4 }}
                             unoptimized
                         />
                         <div
@@ -723,10 +792,23 @@ export default function StorefrontOnboarding() {
                                 {copied ? <Check size={17} /> : <Copy size={17} />}
                             </button>
                         </div>
-                        <div style={{ display: "flex", gap: 12, marginTop: 4 }}>
+                        <div style={{ display: "flex", gap: 12, marginTop: 4, flexWrap: "wrap", justifyContent: "center" }}>
                             <button className="btn-primary" onClick={copyLink}>
                                 {copied ? "Link copied" : "Copy link"}
                             </button>
+                            <a
+                                href={`/store/${slug}`}
+                                className="btn-primary"
+                                style={{
+                                    textDecoration: "none",
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    background: "var(--ink)",
+                                    color: "var(--paper)",
+                                }}
+                            >
+                                Visit Store Catalog
+                            </a>
                             <button className="btn-ghost" onClick={() => setScreen("landing")}>
                                 Back to home
                             </button>

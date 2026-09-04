@@ -1,6 +1,6 @@
 import re
 from typing import Optional, List
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, AliasChoices
 from datetime import datetime
 
 SL_PHONE_REGEX = re.compile(r"^(?:\+?94|0)?(7[01245678]\d{7})$")
@@ -27,10 +27,14 @@ def slugify(text: str) -> str:
     return text.strip("-")
 
 class StoreBase(BaseModel):
-    name: str = Field(..., min_length=2, max_length=100, description="Shop or Vendor Name", examples=["Ruhunu Spices"])
-    whatsapp_number: str = Field(..., description="Sri Lankan mobile number (e.g. 0771234567)", examples=["0771234567"])
+    name: str = Field(..., validation_alias=AliasChoices("name", "shopName", "shop_name"), min_length=2, max_length=100, description="Shop or Vendor Name", examples=["Ruhunu Spices"])
+    whatsapp_number: str = Field(..., validation_alias=AliasChoices("whatsapp_number", "contact", "whatsappNumber"), description="Sri Lankan mobile number (e.g. 0771234567)", examples=["0771234567"])
     description: Optional[str] = Field(None, max_length=500, description="Brief store description or bio")
     slug: Optional[str] = Field(None, max_length=120, description="Custom store URL slug. Generated from name if omitted.")
+    category: Optional[str] = Field(None, max_length=100, description="Store category")
+    location: Optional[str] = Field(None, max_length=100, description="City / Region")
+    logo_url: Optional[str] = Field(None, validation_alias=AliasChoices("logo_url", "logoUrl"), description="Logo or banner URL")
+    owner_name: Optional[str] = Field(None, validation_alias=AliasChoices("owner_name", "ownerName"), description="Merchant contact name")
 
     @field_validator("whatsapp_number")
     @classmethod
@@ -69,6 +73,10 @@ class StoreResponse(BaseModel):
     slug: str
     whatsapp_number: str
     description: Optional[str] = None
+    category: Optional[str] = None
+    location: Optional[str] = None
+    logo_url: Optional[str] = None
+    owner_name: Optional[str] = None
     store_url: str
     qr_code_data_url: Optional[str] = None
     created_at: Optional[datetime] = None
