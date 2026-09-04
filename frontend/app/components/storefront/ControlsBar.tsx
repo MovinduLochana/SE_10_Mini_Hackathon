@@ -40,7 +40,7 @@ export function ControlsBar({ filters, onChange }: ControlsBarProps) {
                         ))}
                     </select>
 
-                    {/* Price range */}
+                    {/* Price range input & slider */}
                     <div className="sf-price-range">
                         <input
                             type="number"
@@ -60,6 +60,54 @@ export function ControlsBar({ filters, onChange }: ControlsBarProps) {
                             aria-label="Maximum price"
                         />
                     </div>
+                </div>
+
+                {/* Interactive LKR Price Slider */}
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    marginTop: 8,
+                    padding: "8px 12px",
+                    background: "rgba(0,0,0,0.02)",
+                    borderRadius: 8,
+                    fontSize: 12.5,
+                    color: "var(--ink)"
+                }}>
+                    <span style={{ fontWeight: 500, whiteSpace: "nowrap" }}>
+                        Max Price: <strong style={{ color: "var(--teal)" }}>{filters.maxPrice ? `Rs. ${Number(filters.maxPrice).toLocaleString()}` : "Any"}</strong>
+                    </span>
+                    <input
+                        type="range"
+                        min="200"
+                        max="10000"
+                        step="100"
+                        value={filters.maxPrice || "10000"}
+                        onChange={(e) => onChange({ maxPrice: e.target.value === "10000" ? "" : e.target.value })}
+                        style={{
+                            flex: 1,
+                            accentColor: "var(--teal)",
+                            cursor: "pointer",
+                            height: 4,
+                        }}
+                    />
+                    {filters.maxPrice && (
+                        <button
+                            type="button"
+                            onClick={() => onChange({ maxPrice: "" })}
+                            style={{
+                                background: "none",
+                                border: "none",
+                                color: "var(--terra)",
+                                cursor: "pointer",
+                                fontSize: 11.5,
+                                textDecoration: "underline",
+                                padding: 0
+                            }}
+                        >
+                            Reset
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

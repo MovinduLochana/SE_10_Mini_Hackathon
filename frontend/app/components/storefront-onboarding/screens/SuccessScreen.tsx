@@ -115,6 +115,19 @@ export function SuccessScreen({ form, shareLink, qrSrc, slug, copied, onCopy, on
                             Visit Store Catalog
                         </a>
                     )}
+                    <a
+                        href="/dashboard"
+                        className="btn-primary"
+                        style={{
+                            textDecoration: "none",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            background: "var(--teal)",
+                            color: "var(--paper)",
+                        }}
+                    >
+                        Manage Inventory & Products →
+                    </a>
                     <button className="btn-ghost" onClick={onHome}>
                         Back to home
                     </button>

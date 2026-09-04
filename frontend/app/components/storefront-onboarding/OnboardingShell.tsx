@@ -8,7 +8,7 @@ interface OnboardingShellProps {
     step: number;
     onBack: () => void;
     backLabel: string;
-    form: FormState;
+    form?: Partial<FormState>;
     children: React.ReactNode;
 }
 
@@ -16,7 +16,7 @@ export function OnboardingShell({
     step,
     onBack,
     backLabel,
-    form,
+    form = {},
     children,
 }: OnboardingShellProps) {
     return (

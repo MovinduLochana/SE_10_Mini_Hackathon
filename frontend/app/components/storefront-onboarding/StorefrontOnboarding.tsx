@@ -58,7 +58,15 @@ export default function StorefrontOnboarding() {
         const e: Partial<Record<keyof FormState, string>> = {};
         if (!form.category) e.category = "Pick a category.";
         if (!form.description.trim()) e.description = "Tell customers what you sell.";
-        if (!form.contact.trim()) e.contact = "Add a way for customers to reach you.";
+        if (!form.contact.trim()) {
+            e.contact = "Add a WhatsApp mobile number (e.g. 0771234567).";
+        } else {
+            const cleanPhone = form.contact.replace(/[\s\-]/g, "");
+            const slPattern = /^(?:0|\+?94)?7[01245678]\d{7}$/;
+            if (!slPattern.test(cleanPhone)) {
+                e.contact = "Must be a valid Sri Lankan mobile number (e.g. 07X XXX XXXX).";
+            }
+        }
         setErrors(e);
         return Object.keys(e).length === 0;
     }
@@ -84,6 +92,10 @@ export default function StorefrontOnboarding() {
                 }
             }
 
+            if (typeof window !== "undefined") {
+                localStorage.setItem("polalink_token", token);
+            }
+
             // 2. Onboard Store via backend API
             const storeRes = await api.onboardStore(
                 {
@@ -97,6 +109,10 @@ export default function StorefrontOnboarding() {
                 },
                 token
             );
+
+            if (typeof window !== "undefined") {
+                localStorage.setItem("polalink_slug", storeRes.slug);
+            }
 
             setCreatedStore(storeRes);
             setScreen("success");

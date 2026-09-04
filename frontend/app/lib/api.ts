@@ -32,6 +32,8 @@ export interface ProductResponse {
   image_url?: string;
   is_available: boolean;
   stock_badge: "IN_STOCK" | "LOW_STOCK" | "OUT_OF_STOCK";
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface OrderCalculationItem {
@@ -161,6 +163,100 @@ export const api = {
     return request<ProductResponse[]>(
       `/api/stores/${slug}/products${qs ? `?${qs}` : ""}`
     );
+  },
+
+  // Real-Time Merchant Inventory Management
+  async getInventory(slug: string, token: string) {
+    return request<ProductResponse[]>(`/api/stores/${slug}/inventory`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
+  async getMerchantInventory(slug: string, token: string) {
+    return this.getInventory(slug, token);
+  },
+
+  async addProduct(
+    slug: string,
+    payload: {
+      title: string;
+      description?: string;
+      price: number;
+      category: string;
+      stock: number;
+      image_url?: string;
+      is_available?: boolean;
+    },
+    token: string
+  ) {
+    return request<ProductResponse>(`/api/stores/${slug}/products`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async updateProduct(
+    productId: string,
+    payload: Partial<{
+      title: string;
+      description?: string;
+      price: number;
+      category: string;
+      stock: number;
+      image_url?: string;
+      is_available?: boolean;
+    }>,
+    token: string
+  ) {
+    return request<ProductResponse>(`/api/products/${productId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async adjustProductStock(
+    productId: string,
+    adjustment: { adjustment?: number; new_stock?: number },
+    token: string
+  ) {
+    return request<ProductResponse>(`/api/products/${productId}/stock`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(adjustment),
+    });
+  },
+
+  async toggleProductStatus(
+    productId: string,
+    isAvailable: boolean,
+    token: string
+  ) {
+    return request<ProductResponse>(`/api/products/${productId}/toggle-status`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ is_available: isAvailable }),
+    });
+  },
+
+  async deleteProduct(productId: string, token: string) {
+    return request<void>(`/api/products/${productId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
 
   // Live Order Calculator & WhatsApp Checkout
