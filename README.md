@@ -35,11 +35,12 @@ StallFront is an instant digital catalog and storefront builder designed for sma
 ## Team Member Details and Contributions
 The team members can be updated with their exact names and roles as needed. The project structure currently reflects the following responsibilities:
 
-- Product Lead / UX Designer: defines the storefront flow, user journey, business problem, and customer-facing experience
-- Frontend Developer: builds the seller onboarding flow, dashboard, storefront UI, filters, and catalog experience
-- Backend Developer: creates the API layer, store/product management, authentication, and inventory logic
-- AI Integration Contributor: connects AI-powered product description and category-suggestion features to the app workflow
-- QA / Validation Contributor: tests storefront generation, inventory updates, and public catalog behavior
+| Student ID | Member Name | Contributions |
+| --- | --- | --- |
+| IT24100345 | Wijethunge H.A.M.L.T | Backend Development |
+| IT24100762 | Atapattu S.K. | Backend Development |
+| IT24100327 | Perera B.P.N. | Frontend Development |
+| IT24103186 | Liyanasooriya B.G.S.L | Frontend Development |
 
 ## Installation and Execution Instructions
 ### Frontend
