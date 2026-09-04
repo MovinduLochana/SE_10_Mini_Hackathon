@@ -1,6 +1,6 @@
 from typing import List, Optional
 from fastapi import APIRouter, HTTPException, Depends, status, Query
-from app.core.supabase_client import get_supabase
+from app.core.supabase_client import get_supabase, get_supabase_client
 from app.core.auth import get_current_user, AuthenticatedUser
 from app.models.product import (
     ProductCreate,
@@ -130,8 +130,8 @@ async def get_merchant_inventory(
     Merchant Inventory API:
     Lists all inventory items with computed stock badges (IN_STOCK, LOW_STOCK, OUT_OF_STOCK).
     """
-    supabase = get_supabase()
-    store_res = supabase.table("stores").select("id, user_id").eq("slug", slug).execute()
+    client = get_supabase_client(current_user.token)
+    store_res = client.table("stores").select("id, user_id").eq("slug", slug).execute()
     if not store_res.data:
         raise HTTPException(status_code=404, detail="Store not found.")
     
@@ -139,7 +139,7 @@ async def get_merchant_inventory(
     if store.get("user_id") != current_user.id:
         raise HTTPException(status_code=403, detail="You do not have permission to view this inventory.")
 
-    res = supabase.table("products").select("*").eq("store_id", store["id"]).order("created_at", desc=True).execute()
+    res = client.table("products").select("*").eq("store_id", store["id"]).order("created_at", desc=True).execute()
     return [format_product_response(p) for p in res.data or []]
 
 @router.post("/api/stores/{slug}/products", response_model=ProductResponse, status_code=status.HTTP_201_CREATED)
@@ -151,8 +151,8 @@ async def add_product(
     """
     Adds a new product to the merchant's store catalog.
     """
-    supabase = get_supabase()
-    store_res = supabase.table("stores").select("id, user_id").eq("slug", slug).execute()
+    client = get_supabase_client(current_user.token)
+    store_res = client.table("stores").select("id, user_id").eq("slug", slug).execute()
     if not store_res.data:
         raise HTTPException(status_code=404, detail="Store not found.")
     
@@ -171,7 +171,7 @@ async def add_product(
         "is_available": payload.is_available and (payload.stock > 0)
     }
 
-    res = supabase.table("products").insert(insert_data).execute()
+    res = client.table("products").insert(insert_data).execute()
     if not res.data:
         raise HTTPException(status_code=500, detail="Failed to create product.")
     return format_product_response(res.data[0])
@@ -185,20 +185,23 @@ async def update_product_details(
     """
     Inline edit for product details (title, description, price, category, stock, image).
     """
-    supabase = get_supabase()
-    verify_product_ownership(supabase, product_id, current_user.id)
+    client = get_supabase_client(current_user.token)
+    verify_product_ownership(client, product_id, current_user.id)
 
     update_fields = {k: v for k, v in payload.model_dump().items() if v is not None}
     if not update_fields:
-        res = supabase.table("products").select("*").eq("id", product_id).execute()
+        res = client.table("products").select("*").eq("id", product_id).execute()
         return format_product_response(res.data[0])
 
     # If stock is being updated to 0, automatically reflect availability if desired
     if "stock" in update_fields and update_fields["stock"] == 0:
         update_fields["is_available"] = False
 
-    res = supabase.table("products").update(update_fields).eq("id", product_id).execute()
+    res = client.table("products").update(update_fields).eq("id", product_id).execute()
     if not res.data:
+        check = client.table("products").select("*").eq("id", product_id).execute()
+        if check.data:
+            return format_product_response(check.data[0])
         raise HTTPException(status_code=500, detail="Failed to update product.")
     return format_product_response(res.data[0])
 
@@ -212,8 +215,8 @@ async def adjust_product_stock(
     Quick-adjust quantity counter to restock or decrement items.
     Supports either relative adjustment (+5, -2) or absolute new_stock.
     """
-    supabase = get_supabase()
-    prod = verify_product_ownership(supabase, product_id, current_user.id)
+    client = get_supabase_client(current_user.token)
+    prod = verify_product_ownership(client, product_id, current_user.id)
 
     current_stock = int(prod.get("stock", 0))
 
@@ -231,12 +234,15 @@ async def adjust_product_stock(
         # If restocked from zero, automatically toggle available
         is_avail = True
 
-    res = supabase.table("products").update({
+    res = client.table("products").update({
         "stock": target_stock,
         "is_available": is_avail
     }).eq("id", product_id).execute()
 
     if not res.data:
+        check = client.table("products").select("*").eq("id", product_id).execute()
+        if check.data:
+            return format_product_response(check.data[0])
         raise HTTPException(status_code=500, detail="Failed to update stock.")
     return format_product_response(res.data[0])
 
@@ -250,14 +256,17 @@ async def toggle_product_availability(
     1-Click Live Stock Status Toggle:
     Mark item as In Stock or Out of Stock, immediately reflected on the public catalog.
     """
-    supabase = get_supabase()
-    verify_product_ownership(supabase, product_id, current_user.id)
+    client = get_supabase_client(current_user.token)
+    verify_product_ownership(client, product_id, current_user.id)
 
-    res = supabase.table("products").update({
+    res = client.table("products").update({
         "is_available": payload.is_available
     }).eq("id", product_id).execute()
 
     if not res.data:
+        check = client.table("products").select("*").eq("id", product_id).execute()
+        if check.data:
+            return format_product_response(check.data[0])
         raise HTTPException(status_code=500, detail="Failed to toggle product status.")
     return format_product_response(res.data[0])
 
@@ -269,8 +278,8 @@ async def delete_product(
     """
     Deletes a product item from the catalog.
     """
-    supabase = get_supabase()
-    verify_product_ownership(supabase, product_id, current_user.id)
+    client = get_supabase_client(current_user.token)
+    verify_product_ownership(client, product_id, current_user.id)
 
-    supabase.table("products").delete().eq("id", product_id).execute()
+    client.table("products").delete().eq("id", product_id).execute()
     return None
