@@ -34,7 +34,7 @@ app = FastAPI(
 # CORS Middleware for Next.js Frontend
 origins = settings.CORS_ORIGINS
 if isinstance(origins, str):
-    origins = [origins]
+    origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
