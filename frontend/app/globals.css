@@ -37,11 +37,6 @@
   --color-destructive-bg: #fef2f2;
   --color-destructive-border: #fee2e2;
 
-  --color-ai-from: #6366f1;
-  --color-ai-to: #d946ef;
-  --color-ai-border-from: #818cf8;
-  --color-ai-border-to: #e879f9;
-
   /* Typography scale (Inter) */
   --text-headline-xl: 2rem;
   --text-headline-xl--line-height: 2.5rem;
@@ -95,7 +90,6 @@
   --shadow-level-1: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
   --shadow-level-2: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
   --shadow-level-3: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
-  --shadow-ai: 0 0 0 1px rgba(217, 70, 239, 0.25), 0 4px 12px -2px rgba(99, 102, 241, 0.12);
 }
 
 :root {

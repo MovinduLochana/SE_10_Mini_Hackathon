@@ -15,11 +15,11 @@ import {
 import type { ShopInfo } from "@/lib/mock-data";
 
 const NAV_ITEMS = [
-  { href: "/dashboard", label: "Dashboard", icon: DashboardIcon },
-  { href: "/inventory-manager", label: "Inventory Manager", icon: InventoryIcon },
-  { href: "/add-product", label: "Add Product", icon: AddCircleIcon },
-  { href: "/categories", label: "Categories", icon: CategoryIcon },
-  { href: "/shop-settings", label: "Shop Settings", icon: SettingsIcon },
+  { href: "/dashboard", label: "Dashboard", icon: DashboardIcon, exact: false },
+  { href: "/inventory", label: "Inventory Manager", icon: InventoryIcon, exact: true },
+  { href: "/inventory/new", label: "Add Product", icon: AddCircleIcon, exact: false },
+  { href: "/categories", label: "Categories", icon: CategoryIcon, exact: false },
+  { href: "/shop-settings", label: "Shop Settings", icon: SettingsIcon, exact: false },
 ] as const;
 
 export function Sidebar({ shop }: { shop: ShopInfo }) {
@@ -57,7 +57,9 @@ export function Sidebar({ shop }: { shop: ShopInfo }) {
 
         <nav className="mt-1 flex flex-col gap-1 px-2 xl:px-3">
           {NAV_ITEMS.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            const isActive = item.exact
+              ? pathname === item.href
+              : pathname === item.href || pathname.startsWith(`${item.href}/`);
             const Icon = item.icon;
             return (
               <Link

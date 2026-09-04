@@ -1,12 +1,21 @@
 import type { ReactNode } from "react";
 
-export type MetricCardTone = "primary" | "warning" | "secondary" | "neutral";
+export type MetricCardTone = "primary" | "warning" | "secondary" | "neutral" | "destructive";
 
 const TONE_CLASSES: Record<MetricCardTone, string> = {
   primary: "bg-slate-50 text-primary",
-  warning: "bg-destructive-bg text-destructive",
+  warning: "bg-warning-bg text-warning-text",
   secondary: "bg-secondary-bg text-secondary-text",
   neutral: "bg-slate-50 text-slate-500",
+  destructive: "bg-destructive-bg text-destructive",
+};
+
+const PROGRESS_TRACK_CLASSES: Record<MetricCardTone, string> = {
+  primary: "bg-primary",
+  warning: "bg-warning",
+  secondary: "bg-secondary",
+  neutral: "bg-slate-400",
+  destructive: "bg-destructive",
 };
 
 export interface MetricCardProps {
@@ -16,6 +25,8 @@ export interface MetricCardProps {
   icon: ReactNode;
   tone?: MetricCardTone;
   footer?: ReactNode;
+  /** 0-100. When set, renders a thin progress bar under the value/footer. */
+  progressPercent?: number;
 }
 
 export function MetricCard({
@@ -25,6 +36,7 @@ export function MetricCard({
   icon,
   tone = "neutral",
   footer,
+  progressPercent,
 }: MetricCardProps) {
   return (
     <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-level-1 transition-shadow hover:shadow-level-2">
@@ -48,6 +60,14 @@ export function MetricCard({
           ) : null}
         </div>
         {footer}
+        {progressPercent !== undefined ? (
+          <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-slate-100">
+            <div
+              className={`h-full rounded-full ${PROGRESS_TRACK_CLASSES[tone]}`}
+              style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   );

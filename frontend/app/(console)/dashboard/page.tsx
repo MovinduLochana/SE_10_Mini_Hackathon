@@ -131,7 +131,7 @@ export default function DashboardPage() {
           value={metrics.stockAlertsCount}
           unit="need attention"
           icon={<WarningIcon className="h-5 w-5" />}
-          tone="warning"
+          tone="destructive"
           footer={
             <div className="flex items-center justify-between">
               <span className="rounded-full bg-slate-100 px-2 py-0.5 text-label-sm text-slate-500">
@@ -187,7 +187,7 @@ export default function DashboardPage() {
               </span>
             </div>
             <Link
-              href="/inventory-manager"
+              href="/inventory"
               className="flex items-center gap-1 text-label-md font-semibold text-primary hover:underline"
             >
               Open Inventory Manager

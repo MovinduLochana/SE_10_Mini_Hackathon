@@ -281,3 +281,178 @@ export function LinkIcon(props: IconProps) {
     </Base>
   );
 }
+
+export function EditIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3Z" />
+      <path d="m14 6.5 3 3" />
+    </Base>
+  );
+}
+
+export function TrashIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M5 7h14" />
+      <path d="M9 7V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v2" />
+      <path d="M7 7v12a1.5 1.5 0 0 0 1.5 1.5h7A1.5 1.5 0 0 0 17 19V7" />
+      <path d="M10.5 11v6M13.5 11v6" />
+    </Base>
+  );
+}
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="m6 9 6 6 6-6" />
+    </Base>
+  );
+}
+
+export function ChevronLeftIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="m14.5 5-6.5 7 6.5 7" />
+    </Base>
+  );
+}
+
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="m9.5 5 6.5 7-6.5 7" />
+    </Base>
+  );
+}
+
+export function TableIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="1.5" />
+      <path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15" />
+    </Base>
+  );
+}
+
+export function GridIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.2" />
+      <rect x="13" y="3.5" width="7.5" height="7.5" rx="1.2" />
+      <rect x="3.5" y="13" width="7.5" height="7.5" rx="1.2" />
+      <rect x="13" y="13" width="7.5" height="7.5" rx="1.2" />
+    </Base>
+  );
+}
+
+export function SparkleIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 3.5c.4 2.6 1 4.1 2 5.1s2.5 1.6 5.1 2c-2.6.4-4.1 1-5.1 2s-1.6 2.5-2 5.1c-.4-2.6-1-4.1-2-5.1s-2.5-1.6-5.1-2c2.6-.4 4.1-1 5.1-2s1.6-2.5 2-5.1Z" />
+    </Base>
+  );
+}
+
+export function ChecklistIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="m4.5 6.5 1.5 1.5 2.5-3" />
+      <path d="M11 7h9" />
+      <path d="m4.5 13.5 1.5 1.5 2.5-3" />
+      <path d="M11 14h9" />
+    </Base>
+  );
+}
+
+export function ImageIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="1.5" />
+      <circle cx="9" cy="10" r="1.6" />
+      <path d="m5 17 4.5-4.5a1.5 1.5 0 0 1 2.1 0L15 16l1-1a1.5 1.5 0 0 1 2.1 0L20.5 17.5" />
+    </Base>
+  );
+}
+
+export function CartOffIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3.5 4h2l2 11.5h9.5" />
+      <path d="M8 8h11l-1.4 6.2H9" />
+      <circle cx="9.5" cy="19" r="1.3" />
+      <circle cx="16" cy="19" r="1.3" />
+      <path d="m4.5 4 15 16" />
+    </Base>
+  );
+}
+
+export function ArchiveIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <rect x="3.5" y="4" width="17" height="4.5" rx="1.2" />
+      <path d="M4.5 8.5v9A1.5 1.5 0 0 0 6 19h12a1.5 1.5 0 0 0 1.5-1.5v-9" />
+      <path d="M10 12.5h4" />
+    </Base>
+  );
+}
+
+export function PublishIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 20V6.5" />
+      <path d="m7 11 5-5 5 5" />
+      <path d="M5 20h14" />
+    </Base>
+  );
+}
+
+export function StarIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="m12 4 2.3 4.9 5.4.6-4 3.7 1.1 5.3L12 15.9 7.2 18.5l1.1-5.3-4-3.7 5.4-.6L12 4Z" />
+    </Base>
+  );
+}
+
+export function DragHandleIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="9" cy="6" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="9" cy="12" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="9" cy="18" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="6" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="12" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="18" r="1.1" fill="currentColor" stroke="none" />
+    </Base>
+  );
+}
+
+export function ShoppingBagIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6 8h12l-1 12H7L6 8Z" />
+      <path d="M9 8V6.5a3 3 0 0 1 6 0V8" />
+    </Base>
+  );
+}
+
+export function TruckIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3.5 7h10v9h-10z" />
+      <path d="M13.5 10.5h3.5l3 3V16h-6.5z" />
+      <circle cx="7.5" cy="17.5" r="1.6" />
+      <circle cx="17" cy="17.5" r="1.6" />
+    </Base>
+  );
+}
+
+export function XCircleIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m9.5 9.5 5 5m0-5-5 5" />
+    </Base>
+  );
+}
