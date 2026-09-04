@@ -78,26 +78,13 @@ async fn onboard_store(
         desired_slug = format!("{desired_slug}-{}", &Uuid::new_v4().simple().to_string()[..4]);
     }
 
-    let mut store_insert = serde_json::json!({
+    let store_insert = serde_json::json!({
         "user_id": user.id,
         "name": payload.name,
         "slug": desired_slug,
         "whatsapp_number": payload.whatsapp_number,
         "description": payload.description.unwrap_or_default(),
     });
-
-    if let Some(cat) = payload.category {
-        store_insert["category"] = serde_json::json!(cat);
-    }
-    if let Some(loc) = payload.location {
-        store_insert["location"] = serde_json::json!(loc);
-    }
-    if let Some(logo) = payload.logo_url {
-        store_insert["logo_url"] = serde_json::json!(logo);
-    }
-    if let Some(owner) = payload.owner_name {
-        store_insert["owner_name"] = serde_json::json!(owner);
-    }
 
     let res = state
         .supabase
@@ -129,7 +116,20 @@ async fn onboard_store(
             .await;
     }
 
-    let response = build_store_response(&new_store, &state.config.frontend_url)?;
+    let mut response = build_store_response(&new_store, &state.config.frontend_url)?;
+    if response.category.is_none() {
+        response.category = payload.category;
+    }
+    if response.location.is_none() {
+        response.location = payload.location;
+    }
+    if response.logo_url.is_none() {
+        response.logo_url = payload.logo_url;
+    }
+    if response.owner_name.is_none() {
+        response.owner_name = payload.owner_name;
+    }
+
     Ok((StatusCode::CREATED, Json(response)))
 }
 
