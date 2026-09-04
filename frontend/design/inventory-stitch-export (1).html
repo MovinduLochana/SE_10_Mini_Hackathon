@@ -1,0 +1,984 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#dae2fd", "surface-dim": "#d2d9f4", "on-tertiary-fixed-variant": "#653e00", "on-tertiary": "#ffffff", "surface-container-lowest": "#ffffff", "on-background": "#131b2e", "on-error-container": "#93000a", "background": "#faf8ff", "on-secondary-fixed-variant": "#005236", "on-error": "#ffffff", "on-primary": "#ffffff", "on-primary-container": "#c1beff", "on-surface": "#131b2e", "on-secondary": "#ffffff", "secondary-container": "#6cf8bb", "tertiary": "#553300", "on-tertiary-container": "#ffb759", "tertiary-container": "#744800", "surface-tint": "#5148d7", "error": "#ba1a1a", "inverse-primary": "#c3c0ff", "surface": "#faf8ff", "on-surface-variant": "#464554", "on-secondary-fixed": "#002113", "outline": "#777586", "tertiary-fixed-dim": "#ffb95f", "secondary": "#006c49", "on-tertiary-fixed": "#2a1700", "surface-variant": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#e3dfff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#6ffbbe", "primary-container": "#4338ca", "primary-fixed-dim": "#c3c0ff", "primary": "#2a14b4", "on-primary-fixed": "#100069", "surface-bright": "#faf8ff", "outline-variant": "#c7c4d7", "inverse-surface": "#283044", "error-container": "#ffdad6", "surface-container-high": "#e2e7ff", "on-primary-fixed-variant": "#372abf", "on-secondary-container": "#00714d", "surface-container": "#eaedff", "inverse-on-surface": "#eef0ff", "secondary-fixed-dim": "#4edea3" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "space-xl": "2rem", "sidebar-collapsed": "4.5rem", "space-lg": "1.5rem", "gutter-desktop": "1.5rem", "sidebar-expanded": "16rem", "space-md": "1rem", "space-2xl": "3rem", "space-2xs": "0.25rem", "gutter-mobile": "1rem", "space-xs": "0.5rem", "space-sm": "0.75rem" }, fontFamily: { "headline-xl": ["Inter"], "headline-md": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "data-tabular-md": ["Inter"], "body-lg": ["Inter"], "title-sm": ["Inter"], "headline-xl-mobile": ["Inter"], "data-tabular-lg": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"] }, fontSize: { "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "data-tabular-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }], "body-lg": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "title-sm": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "data-tabular-lg": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Artisan Catalog Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1US5CF_Uu8rOKbvUCSj49xkYB8dsPSiUGeJuJnAtiblhCRnqm3n_hW4edbiwWmVwZkpW6uetjMqQ1kmpfem7eB22u8h3qnhcd40XSpsiu_VLfsa-O7Ar-5azfpxN4jac1h0inzT11PR-o-6_Op4oxWs0Q6EX-zCGlUcXvngodykMokXRyWFEb4PVRxhHHTIYpLXdFIN-48nsyEm-Fmtf4Zz4GdgTLBjMMi_dTMAq254vh7UI2wGlNqnyjs"><div class="flex flex-col"><span class="font-title-sm text-title-sm text-on-surface leading-tight">Artisan Commerce</span><span class="font-label-sm text-label-sm text-on-surface-variant">Merchant Console</span></div></div><div class="px-space-md py-space-sm"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><div class="flex flex-col truncate pr-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Active Store</span><span class="font-title-sm text-title-sm text-on-surface truncate">Velvet &amp; Oak</span></div><div class="flex items-center gap-space-2xs bg-surface-container-lowest px-space-xs py-space-2xs rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><span class="h-2 w-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-secondary font-semibold">Live</span></div></div></div><nav class="flex flex-col gap-space-2xs px-space-md mt-space-xs" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.04)]"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="dashboard" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Dashboard</a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg transition-all bg-primary-container text-on-primary font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.04)]" data-path="inventory-manager" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Inventory Manager</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="add-product" href="#"><span class="material-symbols-outlined text-lg">add_circle</span>Add Product</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="categories" href="#"><span class="material-symbols-outlined text-lg">category</span>Categories</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="shop-settings" href="#"><span class="material-symbols-outlined text-lg">settings</span>Shop Settings</a></nav></div><div class="px-space-md pb-space-md flex flex-col gap-space-xs"><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="public-storefront-preview" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-base text-primary">storefront</span><span class="font-label-md text-label-md">Store Preview</span></div><span class="material-symbols-outlined text-sm text-on-surface-variant">north_east</span></a><div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-base text-secondary">sync</span><span class="font-label-sm text-label-sm text-on-surface-variant">Live Catalog Sync</span></div><span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">100%</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-lg"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-base">search</span><input class="w-full pl-9 pr-space-md py-1.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]" placeholder="Search inventory SKU, title, tag..." type="text"></div></div><div class="flex items-center gap-space-sm"><a class="hidden sm:inline-flex items-center gap-space-2xs px-space-sm py-1.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" href="/shop/velvet-oak" target="_blank"><span class="material-symbols-outlined text-sm text-on-surface-variant">open_in_new</span>View Storefront ↗</a><button class="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Share QR Code" type="button"><span class="material-symbols-outlined text-base">qr_code_2</span></button><a class="inline-flex items-center gap-space-2xs px-space-md py-1.5 rounded-lg bg-primary-container text-on-primary hover:opacity-95 transition-opacity font-label-md text-label-md shadow-[0_1px_4px_rgba(0,0,0,0.08)]" data-path="add-product" href="#"><span class="material-symbols-outlined text-sm text-on-primary">add</span>Add Product</a><div class="h-6 w-px bg-surface-container mx-space-2xs"></div><button class="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-lg">notifications</span><span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-error"></span></button><div class="flex items-center gap-space-xs pl-space-2xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxB0ptWz3ClOfWkdVu4sf2ZzA7fxN54mai0gb0z-UVkgb93Iyo0pg28BKzvVoD3abSkIz-8FDmeKo0Ee-TKTVnYHsyHPlNVAkNC9JFvlkfqvUv5A6HnrEFcm_jpkU2s58xL7kowkFIiFyxZJKQe7mrZR-gXaDoUduQD16GXHol-S-vffiQ3MBhv766upknCztxKGAzdn1SC-jMeAw2KSOhjxuNxqohREApKLlNbpQo0GGJu2X8eB__"><div class="hidden lg:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Elena Vance</span><span class="font-label-sm text-label-sm text-on-surface-variant">Shop Owner</span></div></div></div></div></header><main class="relative pt-16 w-full bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-space-lg py-space-md flex flex-col gap-space-md">
+<!-- Sub-header Breadcrumb & Velocity Stat Ribbon -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center gap-space-2xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<span>Catalog Engine</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-semibold">Inventory Manager</span>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Store Inventory</h1>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary animate-pulse"></span>
+            Sync Active • 48 Managed SKUs
+          </span>
+</div>
+</div>
+<!-- Quick Action Cluster -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="inline-flex items-center gap-space-xs px-space-sm py-2 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container-low transition-colors font-label-md text-label-md" id="btn-export-csv" type="button">
+<span class="material-symbols-outlined text-base text-on-surface-variant">download</span>
+          Export CSV
+        </button>
+<div class="relative inline-block text-left" id="bulk-dropdown-parent">
+<button class="inline-flex items-center gap-space-xs px-space-sm py-2 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container-low transition-colors font-label-md text-label-md" id="btn-bulk-menu" type="button">
+<span class="material-symbols-outlined text-base text-on-surface-variant">checklist</span>
+            Batch Tools
+            <span class="material-symbols-outlined text-sm text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-1 w-48 rounded-lg bg-surface-container-lowest shadow-xl py-1 z-30" id="bulk-menu-panel">
+<button class="w-full text-left px-space-sm py-1.5 font-body-sm text-body-sm text-on-surface hover:bg-surface-container-low flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-sm text-secondary">sync</span> Push to Point of Sale
+            </button>
+<button class="w-full text-left px-space-sm py-1.5 font-body-sm text-body-sm text-on-surface hover:bg-surface-container-low flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-sm text-primary">price_change</span> Apply 10% Flash Sale
+            </button>
+<button class="w-full text-left px-space-sm py-1.5 font-body-sm text-body-sm text-on-surface hover:bg-surface-container-low flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">qr_code</span> Print Barcode Labels
+            </button>
+</div>
+</div>
+<button class="inline-flex items-center gap-space-2xs px-space-md py-2 rounded-lg bg-gradient-to-r from-primary to-primary-container text-on-primary shadow-md hover:opacity-95 transition-all font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+          New Product
+        </button>
+</div>
+</div>
+<!-- Live SKU Metrics Grid with Sparklines -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-space-sm">
+<!-- Total SKUs -->
+<div class="relative overflow-hidden p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Total SKU Portfolio</span>
+<span class="p-1.5 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-base">inventory_2</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-data-tabular-lg text-data-tabular-lg text-on-surface font-bold">48</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">+6 this month</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<!-- In Stock -->
+<div class="relative overflow-hidden p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Healthy Stock</span>
+<span class="p-1.5 rounded-lg bg-secondary-container/40 text-on-secondary-container">
+<span class="material-symbols-outlined text-base">check_circle</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-data-tabular-lg text-data-tabular-lg text-secondary font-bold">42</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">87.5% volume</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 87.5%"></div>
+</div>
+</div>
+<!-- Low Stock Alerts -->
+<div class="relative overflow-hidden p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Low Stock Warning</span>
+<span class="p-1.5 rounded-lg bg-tertiary-fixed/60 text-tertiary-container">
+<span class="material-symbols-outlined text-base">warning</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-data-tabular-lg text-data-tabular-lg text-tertiary font-bold">4</span>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">&lt; 5 units left</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- Depleted / Out of Stock -->
+<div class="relative overflow-hidden p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Depleted Units</span>
+<span class="p-1.5 rounded-lg bg-error-container/40 text-error">
+<span class="material-symbols-outlined text-base">production_quantity_limits</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-data-tabular-lg text-data-tabular-lg text-error font-bold">2</span>
+<span class="font-label-sm text-label-sm text-error font-semibold">Immediate reorder</span>
+</div>
+<div class="mt-2 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 8%"></div>
+</div>
+</div>
+</div>
+<!-- AI Catalog Enhancement Banner -->
+<div class="rounded-xl bg-gradient-to-r from-surface-container-lowest via-surface-container-low to-surface-container-lowest p-space-sm shadow-sm flex items-center justify-between gap-space-md flex-wrap">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-surface-tint flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-base">auto_fix_high</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold leading-tight">Artisan AI Catalog Auditor</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3 low-resolution listings detected. Automatic background cleanup and SEO tags ready.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded-lg bg-surface-container-high text-on-surface font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors" type="button">Dismiss</button>
+<button class="px-space-sm py-1 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm shadow-sm hover:opacity-95 transition-opacity flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm">spark</span>
+          Enhance 3 Items
+        </button>
+</div>
+</div>
+<!-- Search, Filters, Category Tabs & Layout Switcher -->
+<div class="flex flex-col gap-space-sm bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm">
+<!-- Search Field -->
+<div class="relative flex-1 max-w-xl">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-base">search</span>
+<input class="w-full h-9 pl-9 pr-8 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]" id="search-input" placeholder="Search products by name, SKU, or tag..." type="text">
+<button class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface" id="clear-search" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Filter Dropdowns & View Mode Buttons -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Stock Status Dropdown -->
+<div class="relative">
+<select class="h-9 px-space-sm pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-surface-container-lowest cursor-pointer shadow-sm" id="filter-stock-status">
+<option value="all">All Statuses</option>
+<option value="in_stock">In Stock</option>
+<option value="low_stock">Low Stock (&lt;5)</option>
+<option value="out_of_stock">Out of Stock</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+</div>
+<!-- Sort Dropdown -->
+<div class="relative">
+<select class="h-9 px-space-sm pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-surface-container-lowest cursor-pointer shadow-sm" id="sort-select">
+<option value="recent">Sort: Recently Added</option>
+<option value="price_asc">Price: Low to High</option>
+<option value="price_desc">Price: High to Low</option>
+<option value="stock_desc">Stock: High to Low</option>
+<option value="alpha">Alphabetical (A-Z)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-sm">sort</span>
+</div>
+<!-- View Toggle -->
+<div class="inline-flex p-0.5 rounded-lg bg-surface-container-low">
+<button class="p-1.5 rounded-md bg-surface-container-lowest text-primary shadow-sm transition-all" id="view-table-btn" title="Table View" type="button">
+<span class="material-symbols-outlined text-base">table_rows</span>
+</button>
+<button class="p-1.5 rounded-md text-on-surface-variant hover:text-on-surface transition-all" id="view-grid-btn" title="Card Grid View" type="button">
+<span class="material-symbols-outlined text-base">grid_view</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Category Filter Pills Bar -->
+<div class="flex items-center gap-space-2xs overflow-x-auto pb-1 pt-1 no-scrollbar" id="category-pills">
+<button class="cat-pill active-pill whitespace-nowrap px-space-sm py-1 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-all" data-cat="all" type="button">
+          All (48)
+        </button>
+<button class="cat-pill whitespace-nowrap px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" data-cat="Ceramics" type="button">
+          Ceramics (14)
+        </button>
+<button class="cat-pill whitespace-nowrap px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" data-cat="Leather Goods" type="button">
+          Leather Goods (8)
+        </button>
+<button class="cat-pill whitespace-nowrap px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" data-cat="Home &amp; Candle" type="button">
+          Home &amp; Candle (12)
+        </button>
+<button class="cat-pill whitespace-nowrap px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" data-cat="Textiles" type="button">
+          Textiles (9)
+        </button>
+<button class="cat-pill whitespace-nowrap px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" data-cat="Jewelry" type="button">
+          Jewelry (5)
+        </button>
+</div>
+</div>
+<!-- Sticky / Floating Multi-Item Bulk Action Bar -->
+<div class="hidden sticky top-20 z-30 w-full p-space-sm rounded-xl bg-inverse-surface text-inverse-on-surface shadow-2xl flex items-center justify-between gap-space-sm transition-all duration-200" id="bulk-bar">
+<div class="flex items-center gap-space-sm">
+<span class="flex items-center justify-center h-6 w-6 rounded-full bg-primary-container text-on-primary text-xs font-bold" id="selected-count-badge">2</span>
+<span class="font-label-md text-label-md text-inverse-on-surface font-medium" id="selected-count-text">2 products selected</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded-lg bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 font-label-sm text-label-sm text-inverse-on-surface flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">folder</span>
+          Update Category
+        </button>
+<button class="px-space-sm py-1 rounded-lg bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 font-label-sm text-label-sm text-inverse-on-surface flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">percent</span>
+          Set Discount
+        </button>
+<button class="px-space-sm py-1 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm flex items-center gap-1 hover:opacity-90 transition-opacity" id="bulk-mark-in-stock" type="button">
+<span class="material-symbols-outlined text-sm">done_all</span>
+          Mark In Stock
+        </button>
+<button class="px-space-sm py-1 rounded-lg bg-error text-on-error font-label-sm text-label-sm flex items-center gap-1 hover:opacity-90 transition-opacity" id="bulk-delete-btn" type="button">
+<span class="material-symbols-outlined text-sm">delete</span>
+          Delete Selected
+        </button>
+<button class="ml-1 p-1 rounded-full text-inverse-on-surface/60 hover:text-inverse-on-surface" id="clear-selection-btn" type="button">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+</div>
+<!-- Main Inventory Data Table Canvas -->
+<div class="w-full overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm" id="table-wrapper">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low h-10 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider select-none">
+<th class="w-12 px-space-md py-2 text-center" scope="col">
+<input class="h-4 w-4 rounded accent-primary cursor-pointer" id="master-checkbox" type="checkbox">
+</th>
+<th class="px-space-sm py-2" scope="col">Item / SKU</th>
+<th class="px-space-sm py-2" scope="col">Category</th>
+<th class="px-space-sm py-2 text-right" scope="col">Price</th>
+<th class="px-space-sm py-2 text-center" scope="col">Live Stock (Units)</th>
+<th class="px-space-sm py-2" scope="col">Availability</th>
+<th class="px-space-md py-2 text-right" scope="col">Quick Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface font-body-sm text-body-sm" id="inventory-tbody">
+<!-- Item 1 -->
+<tr class="inventory-row hover:bg-surface-container-low/60 transition-colors group" data-cat="Ceramics" data-id="p1" data-status="in_stock">
+<td class="px-space-md py-3 text-center">
+<input class="row-checkbox h-4 w-4 rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="px-space-sm py-3">
+<div class="flex items-center gap-space-sm">
+<div class="relative h-12 w-12 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Hand-thrown organic earthenware terracotta vase with speckled matte beige glaze and raw clay neck, studio lighting with warm shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKy7xL-M5_ptcnBqwqArcPPoGYIE1hv4RjYBFkljOEPdWzdW2Nwa1aCC7EZ8HtkF2abYgmjsusj9BIMcDLGc7eoOao21foEO7o9QIN_DrUCckRyzhHGezvn5kaS4AIysWcgtOs6HoblrjHK-YZWGrVhniMTKzC8d-_nYqa0QWi4C3mLGS9-qS_tZuSwp5SldABerK4x25Pxe-Jihl56Hd26pIZW6pURK6lYvDASIwwsXXK9cotcHEt">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Hand-thrown Terracotta Vase</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                      SKU: CRT-0941
+                      <span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+                      Ceramics Studio
+                    </span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium">Ceramics</span>
+</td>
+<td class="px-space-sm py-3 text-right">
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">$48.00</span>
+</td>
+<td class="px-space-sm py-3 text-center">
+<div class="inline-flex items-center rounded-lg bg-surface-container-low p-0.5 shadow-inner">
+<button class="btn-qty-minus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-on-surface font-semibold focus:outline-none" type="text" value="14">
+<button class="btn-qty-plus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                  In Stock
+                </span>
+</td>
+<td class="px-space-md py-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Edit Listing" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate SKU" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+</button>
+<a class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-secondary transition-colors" href="#" target="_blank" title="View in Storefront">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</a>
+<button class="btn-row-delete p-1.5 rounded-lg text-on-surface-variant hover:bg-error-container/40 hover:text-error transition-colors" title="Delete Product" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 2 -->
+<tr class="inventory-row hover:bg-surface-container-low/60 transition-colors group" data-cat="Leather Goods" data-id="p2" data-status="in_stock">
+<td class="px-space-md py-3 text-center">
+<input class="row-checkbox h-4 w-4 rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="px-space-sm py-3">
+<div class="flex items-center gap-space-sm">
+<div class="relative h-12 w-12 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Handcrafted vegetable-tanned chestnut leather tote bag with heavy brass rivets and clean saddle stitching, rested on aged oak bench" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt50fRyy2NkTQZ3PnkUjxPWP3AOUSQXqcO8HhmZ2IRRHjPOvBtHqL1s3IgT9WS41W0JLOGv99LWy0XZJ1UVg73TSXf-HXGZ6UcoGPTN7jv3PXBPZRtm8_2R5_fpuPcZLUAQCKpXkjKCZMv5aCfUI3I0kkAscLagfi7rcFSCl_XjoKrHmqSi4h0gcxIxyW40RvbPwt4xnD4yxW79egUJ4gtb8oPaYNUjKZYTsdWvOQgglH0JBkbagpa">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Rustic Leather Tote Bag</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                      SKU: LTH-2201
+                      <span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+                      Artisan Workshop
+                    </span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium">Leather Goods</span>
+</td>
+<td class="px-space-sm py-3 text-right">
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">$120.00</span>
+</td>
+<td class="px-space-sm py-3 text-center">
+<div class="inline-flex items-center rounded-lg bg-surface-container-low p-0.5 shadow-inner">
+<button class="btn-qty-minus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-on-surface font-semibold focus:outline-none" type="text" value="8">
+<button class="btn-qty-plus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                  In Stock
+                </span>
+</td>
+<td class="px-space-md py-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Edit Listing" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate SKU" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+</button>
+<a class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-secondary transition-colors" href="#" target="_blank" title="View in Storefront">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</a>
+<button class="btn-row-delete p-1.5 rounded-lg text-on-surface-variant hover:bg-error-container/40 hover:text-error transition-colors" title="Delete Product" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 3: Low Stock Warning -->
+<tr class="inventory-row hover:bg-surface-container-low/60 transition-colors group" data-cat="Home &amp; Candle" data-id="p3" data-status="low_stock">
+<td class="px-space-md py-3 text-center">
+<input class="row-checkbox h-4 w-4 rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="px-space-sm py-3">
+<div class="flex items-center gap-space-sm">
+<div class="relative h-12 w-12 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Hand-poured cedarwood and golden amber scented soy wax candle in an amber glass jar with minimalist typography label and unlit wooden wick" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFEbgXLKoelt3xxnTInwY4FsgRlWMloJR4gR0magjWXHEY0t_DuKY3JMZIB6-BILqitNX_qhx-9bG9AOymmnD68WTy_sZ3bJwDW8gkXKkaUiBFlH8h2lfvltCQYHF4kd48361eiausIPrskw615DBVs76CgG-3o6nfacoi3XO6slIzBSNRQS4XN6aKJ3l3S-qAo3KqRmPKNNFFt1zxUk31J1_ILM5xvVuFWFCzX46RKn5bLgb4tGtc">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Cedarwood &amp; Amber Soy Candle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                      SKU: CND-4103
+                      <span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+                      Apothecary
+                    </span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium">Home &amp; Candle</span>
+</td>
+<td class="px-space-sm py-3 text-right">
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">$34.50</span>
+</td>
+<td class="px-space-sm py-3 text-center">
+<div class="inline-flex items-center rounded-lg bg-tertiary-fixed/30 p-0.5 shadow-inner">
+<button class="btn-qty-minus h-7 w-7 flex items-center justify-center rounded text-tertiary hover:bg-surface-container-lowest transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-tertiary font-bold focus:outline-none" type="text" value="2">
+<button class="btn-qty-plus h-7 w-7 flex items-center justify-center rounded text-tertiary hover:bg-surface-container-lowest transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-fixed/60 text-tertiary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>
+                  Low Stock (2)
+                </span>
+</td>
+<td class="px-space-md py-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Edit Listing" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate SKU" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+</button>
+<a class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-secondary transition-colors" href="#" target="_blank" title="View in Storefront">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</a>
+<button class="btn-row-delete p-1.5 rounded-lg text-on-surface-variant hover:bg-error-container/40 hover:text-error transition-colors" title="Delete Product" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 4 -->
+<tr class="inventory-row hover:bg-surface-container-low/60 transition-colors group" data-cat="Home &amp; Candle" data-id="p4" data-status="in_stock">
+<td class="px-space-md py-3 text-center">
+<input class="row-checkbox h-4 w-4 rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="px-space-sm py-3">
+<div class="flex items-center gap-space-sm">
+<div class="relative h-12 w-12 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Solid smoked European oak charcuterie serving board with brass hanging loop, dark grain patterns, artisan knife resting alongside" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8PTtx7f5W1ZoI2zLAMcJpzvCFP1UlsPqp1bZz15kvGVt07HPswCQg5WstTMA_64hvVizURr64TqGStPK-i7hYHPjQ065gvnoYDiZ2xL68XgfMqHBPX70MM-iU4yAFYLfC9avIH4fkxSXcWoWAPUCcmLVMgEczS_QD_4nWkjQspfC75cTyyeXh8Uvj9mibIYkYNrLCfNJ0OsmpDlgJjXnGcrQNNN-Yw_M62pYdKmJhuSnfOoSQyjfj">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Smoked Oak Serving Board</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                      SKU: WOD-1108
+                      <span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+                      Woodcraft
+                    </span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium">Home &amp; Candle</span>
+</td>
+<td class="px-space-sm py-3 text-right">
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">$76.00</span>
+</td>
+<td class="px-space-sm py-3 text-center">
+<div class="inline-flex items-center rounded-lg bg-surface-container-low p-0.5 shadow-inner">
+<button class="btn-qty-minus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-on-surface font-semibold focus:outline-none" type="text" value="19">
+<button class="btn-qty-plus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                  In Stock
+                </span>
+</td>
+<td class="px-space-md py-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Edit Listing" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate SKU" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+</button>
+<a class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-secondary transition-colors" href="#" target="_blank" title="View in Storefront">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</a>
+<button class="btn-row-delete p-1.5 rounded-lg text-on-surface-variant hover:bg-error-container/40 hover:text-error transition-colors" title="Delete Product" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 5: Out of Stock -->
+<tr class="inventory-row hover:bg-surface-container-low/60 transition-colors group" data-cat="Textiles" data-id="p5" data-status="out_of_stock">
+<td class="px-space-md py-3 text-center">
+<input class="row-checkbox h-4 w-4 rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="px-space-sm py-3">
+<div class="flex items-center gap-space-sm">
+<div class="relative h-12 w-12 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-sm">
+<img class="h-full w-full object-cover opacity-75" data-alt="Woven raw linen throw blanket with hand-twisted fringed edges, textured off-white and soft indigo melange weave" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8c-sZQWPSv872scRwbBkB0cONE-Yb-sg3XLh_e-VScxJJg4dMAY-KwabSsbOs99n0AVbsIe92Owdaan-TnD_mMy_alTbaouCOKLj2hRkLnf2pAsvvfh-sDOBjYuoirCAi-hQpyC0tIhDx-T2BZL28DhtLTvlzavdyf8iG-OtF36SbTG0ZnDxFV1PRw0yQBw8y0j9-DxS_gC6sIm6UAPlkkNN81HoOTUMH6BFTP1WkCW5loxCHsyiE">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Indigo Loomed Linen Throw</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                      SKU: TXT-5519
+                      <span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+                      Weaving Loft
+                    </span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium">Textiles</span>
+</td>
+<td class="px-space-sm py-3 text-right">
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">$110.00</span>
+</td>
+<td class="px-space-sm py-3 text-center">
+<div class="inline-flex items-center rounded-lg bg-error-container/30 p-0.5 shadow-inner">
+<button class="btn-qty-minus h-7 w-7 flex items-center justify-center rounded text-error hover:bg-surface-container-lowest transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-error font-bold focus:outline-none" type="text" value="0">
+<button class="btn-qty-plus h-7 w-7 flex items-center justify-center rounded text-error hover:bg-surface-container-lowest transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/40 text-error font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-error"></span>
+                  Out of Stock (0)
+                </span>
+</td>
+<td class="px-space-md py-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Edit Listing" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate SKU" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+</button>
+<a class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-secondary transition-colors" href="#" target="_blank" title="View in Storefront">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</a>
+<button class="btn-row-delete p-1.5 rounded-lg text-on-surface-variant hover:bg-error-container/40 hover:text-error transition-colors" title="Delete Product" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 6: Jewelry -->
+<tr class="inventory-row hover:bg-surface-container-low/60 transition-colors group" data-cat="Jewelry" data-id="p6" data-status="in_stock">
+<td class="px-space-md py-3 text-center">
+<input class="row-checkbox h-4 w-4 rounded accent-primary cursor-pointer" type="checkbox">
+</td>
+<td class="px-space-sm py-3">
+<div class="flex items-center gap-space-sm">
+<div class="relative h-12 w-12 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Hammered 14k recycled gold ring with natural uncut river pearl, displayed on raw travertine stone slab with delicate soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7yZFj8QXuiR1kyz7uluk9_-7e-BQS2mIok75xf6b_Sjh7VdQH2hl3z4gxnhAiwBtoduhjNKoK3FnnyKUvcArzXk89IO4M-H8ZFQpLVhjlRQGW_yZ7QYcbfR56_cCVb388RJBG_5P4lEx464Bcbzg6Itjdu6y_FISDTYFohTVIwZ5F3d0V7Mkk23auWuinvbonO4r6rYwG8tBIAsXk7EfX_9EZwk1ugO9INFdHN8prcwxONHPtnvhp">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Hammered Gold River Pearl Ring</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                      SKU: JWY-8802
+                      <span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+                      Metalsmith Lab
+                    </span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium">Jewelry</span>
+</td>
+<td class="px-space-sm py-3 text-right">
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">$185.00</span>
+</td>
+<td class="px-space-sm py-3 text-center">
+<div class="inline-flex items-center rounded-lg bg-surface-container-low p-0.5 shadow-inner">
+<button class="btn-qty-minus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-on-surface font-semibold focus:outline-none" type="text" value="6">
+<button class="btn-qty-plus h-7 w-7 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</td>
+<td class="px-space-sm py-3">
+<span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                  In Stock
+                </span>
+</td>
+<td class="px-space-md py-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Edit Listing" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate SKU" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+</button>
+<a class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-secondary transition-colors" href="#" target="_blank" title="View in Storefront">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</a>
+<button class="btn-row-delete p-1.5 rounded-lg text-on-surface-variant hover:bg-error-container/40 hover:text-error transition-colors" title="Delete Product" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty State Indicator (Hidden by default) -->
+<div class="hidden p-space-2xl flex flex-col items-center justify-center text-center" id="empty-state">
+<div class="h-12 w-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant mb-space-xs">
+<span class="material-symbols-outlined text-2xl">search_off</span>
+</div>
+<p class="font-title-sm text-title-sm text-on-surface font-semibold">No catalog SKUs matched your filters</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-sm">Try resetting active categories or searching by broader keywords such as 'Ceramics' or 'Bag'.</p>
+<button class="mt-space-md px-space-md py-1.5 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-container-highest transition-colors" id="reset-filters-btn" type="button">Reset All Filters</button>
+</div>
+<!-- Pagination Footer -->
+<div class="px-space-md py-space-sm bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+            Showing <strong class="text-on-surface font-semibold" id="page-range">1-6</strong> of <strong class="text-on-surface font-semibold">48</strong> products
+          </span>
+<div class="flex items-center gap-space-2xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rows:</span>
+<select class="h-7 px-space-xs rounded bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none shadow-sm cursor-pointer" id="rows-per-page">
+<option value="6">6</option>
+<option value="12">12</option>
+<option value="24">24</option>
+<option value="48">48</option>
+</select>
+</div>
+</div>
+<!-- Page Navigation Buttons -->
+<div class="flex items-center gap-space-xs self-end sm:self-auto">
+<button class="p-1.5 rounded-md bg-surface-container-lowest text-on-surface-variant/40 cursor-not-allowed shadow-sm" disabled="" type="button">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="h-7 w-7 rounded-md bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold shadow-sm" type="button">1</button>
+<button class="h-7 w-7 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">2</button>
+<button class="h-7 w-7 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">3</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant px-1">…</span>
+<button class="h-7 w-7 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">8</button>
+</div>
+<button class="p-1.5 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Notification Toast Anchor -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" id="toast-container"></div>
+</div>
+</div>
+<script>
+  (function initInventoryManager() {
+    // DOM Elements
+    const searchInput = document.getElementById('search-input');
+    const clearSearch = document.getElementById('clear-search');
+    const statusSelect = document.getElementById('filter-stock-status');
+    const categoryPills = document.querySelectorAll('.cat-pill');
+    const masterCheckbox = document.getElementById('master-checkbox');
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+    const bulkBar = document.getElementById('bulk-bar');
+    const selectedCountBadge = document.getElementById('selected-count-badge');
+    const selectedCountText = document.getElementById('selected-count-text');
+    const clearSelectionBtn = document.getElementById('clear-selection-btn');
+    const bulkMarkInStockBtn = document.getElementById('bulk-mark-in-stock');
+    const bulkDeleteBtn = document.getElementById('bulk-delete-btn');
+    const rows = Array.from(document.querySelectorAll('.inventory-row'));
+    const emptyState = document.getElementById('empty-state');
+    const resetFiltersBtn = document.getElementById('reset-filters-btn');
+    const toastContainer = document.getElementById('toast-container');
+    const btnBulkMenu = document.getElementById('btn-bulk-menu');
+    const bulkMenuPanel = document.getElementById('bulk-menu-panel');
+
+    let currentCategory = 'all';
+
+    // Toast Notification Utility
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      const isSuccess = type === 'success';
+      toast.className = `pointer-events-auto px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 text-label-md font-label-md transition-all duration-300 transform translate-y-2 opacity-0 ${
+        isSuccess ? 'bg-secondary text-on-secondary' : 'bg-inverse-surface text-inverse-on-surface'
+      }`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-base">${isSuccess ? 'check_circle' : 'info'}</span>
+        <span>${message}</span>
+      `;
+      toastContainer.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 2600);
+    }
+
+    // Toggle Dropdown for Top Right Batch Menu
+    if (btnBulkMenu && bulkMenuPanel) {
+      btnBulkMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        bulkMenuPanel.classList.toggle('hidden');
+      });
+      document.addEventListener('click', () => bulkMenuPanel.classList.add('hidden'));
+    }
+
+    // Filter Logic
+    function applyFilters() {
+      const query = (searchInput.value || '').toLowerCase().trim();
+      const statusFilter = statusSelect.value;
+      let visibleCount = 0;
+
+      rows.forEach((row) => {
+        const title = row.querySelector('.font-title-sm').textContent.toLowerCase();
+        const sku = row.querySelector('.font-label-sm').textContent.toLowerCase();
+        const cat = row.getAttribute('data-cat');
+        const status = row.getAttribute('data-status');
+
+        const matchesQuery = !query || title.includes(query) || sku.includes(query);
+        const matchesCategory = currentCategory === 'all' || cat === currentCategory;
+        const matchesStatus = statusFilter === 'all' || status === statusFilter;
+
+        if (matchesQuery && matchesCategory && matchesStatus) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+
+      if (clearSearch) {
+        if (query.length > 0) {
+          clearSearch.classList.remove('hidden');
+        } else {
+          clearSearch.classList.add('hidden');
+        }
+      }
+    }
+
+    // Search Handlers
+    searchInput.addEventListener('input', applyFilters);
+    if (clearSearch) {
+      clearSearch.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFilters();
+        searchInput.focus();
+      });
+    }
+
+    // Status Select
+    statusSelect.addEventListener('change', applyFilters);
+
+    // Category Filter Pills
+    categoryPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        categoryPills.forEach((p) => {
+          p.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+          p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+        });
+        pill.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+        pill.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+
+        currentCategory = pill.getAttribute('data-cat');
+        applyFilters();
+      });
+    });
+
+    if (resetFiltersBtn) {
+      resetFiltersBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        statusSelect.value = 'all';
+        currentCategory = 'all';
+        categoryPills.forEach((p) => {
+          if (p.getAttribute('data-cat') === 'all') {
+            p.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+            p.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          } else {
+            p.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+            p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          }
+        });
+        applyFilters();
+      });
+    }
+
+    // Bulk Multi-selection Handler
+    function updateBulkBar() {
+      const selected = document.querySelectorAll('.row-checkbox:checked');
+      const count = selected.length;
+
+      if (count > 0) {
+        bulkBar.classList.remove('hidden');
+        selectedCountBadge.textContent = count;
+        selectedCountText.textContent = `${count} product${count > 1 ? 's' : ''} selected`;
+      } else {
+        bulkBar.classList.add('hidden');
+      }
+
+      if (masterCheckbox) {
+        const visibleCheckboxes = rows.filter(r => r.style.display !== 'none').map(r => r.querySelector('.row-checkbox'));
+        const allVisibleChecked = visibleCheckboxes.length > 0 && visibleCheckboxes.every(cb => cb.checked);
+        masterCheckbox.checked = allVisibleChecked;
+      }
+    }
+
+    if (masterCheckbox) {
+      masterCheckbox.addEventListener('change', () => {
+        const checked = masterCheckbox.checked;
+        rows.forEach((row) => {
+          if (row.style.display !== 'none') {
+            const cb = row.querySelector('.row-checkbox');
+            if (cb) cb.checked = checked;
+          }
+        });
+        updateBulkBar();
+      });
+    }
+
+    rowCheckboxes.forEach((cb) => {
+      cb.addEventListener('change', updateBulkBar);
+    });
+
+    if (clearSelectionBtn) {
+      clearSelectionBtn.addEventListener('click', () => {
+        rowCheckboxes.forEach((cb) => (cb.checked = false));
+        if (masterCheckbox) masterCheckbox.checked = false;
+        updateBulkBar();
+      });
+    }
+
+    if (bulkMarkInStockBtn) {
+      bulkMarkInStockBtn.addEventListener('click', () => {
+        document.querySelectorAll('.row-checkbox:checked').forEach((cb) => {
+          const row = cb.closest('.inventory-row');
+          if (row) {
+            const qtyField = row.querySelector('.qty-field');
+            if (qtyField) qtyField.value = '10';
+            updateRowStockState(row, 10);
+          }
+        });
+        showToast('Selected products marked In Stock (10 units)');
+        clearSelectionBtn.click();
+      });
+    }
+
+    if (bulkDeleteBtn) {
+      bulkDeleteBtn.addEventListener('click', () => {
+        const count = document.querySelectorAll('.row-checkbox:checked').length;
+        if (confirm(`Are you sure you want to remove ${count} listing(s) from your live store?`)) {
+          document.querySelectorAll('.row-checkbox:checked').forEach((cb) => {
+            const row = cb.closest('.inventory-row');
+            if (row) row.remove();
+          });
+          showToast(`Deleted ${count} items from catalog`, 'info');
+          updateBulkBar();
+        }
+      });
+    }
+
+    // Dynamic Stock Stepper Buttons & Reactive Status Badges
+    function updateRowStockState(row, qty) {
+      const badge = row.querySelector('.status-badge');
+      const qtyContainer = row.querySelector('.qty-field').parentElement;
+
+      if (qty <= 0) {
+        row.setAttribute('data-status', 'out_of_stock');
+        if (badge) {
+          badge.className = 'status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/40 text-error font-label-sm text-label-sm font-semibold';
+          badge.innerHTML = '<span class="h-1.5 w-1.5 rounded-full bg-error"></span>Out of Stock (0)';
+        }
+        if (qtyContainer) {
+          qtyContainer.className = 'inline-flex items-center rounded-lg bg-error-container/30 p-0.5 shadow-inner';
+          row.querySelector('.qty-field').className = 'qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-error font-bold focus:outline-none';
+        }
+      } else if (qty < 5) {
+        row.setAttribute('data-status', 'low_stock');
+        if (badge) {
+          badge.className = 'status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-fixed/60 text-tertiary-container font-label-sm text-label-sm font-semibold';
+          badge.innerHTML = `<span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>Low Stock (${qty})`;
+        }
+        if (qtyContainer) {
+          qtyContainer.className = 'inline-flex items-center rounded-lg bg-tertiary-fixed/30 p-0.5 shadow-inner';
+          row.querySelector('.qty-field').className = 'qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-tertiary font-bold focus:outline-none';
+        }
+      } else {
+        row.setAttribute('data-status', 'in_stock');
+        if (badge) {
+          badge.className = 'status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold';
+          badge.innerHTML = '<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>In Stock';
+        }
+        if (qtyContainer) {
+          qtyContainer.className = 'inline-flex items-center rounded-lg bg-surface-container-low p-0.5 shadow-inner';
+          row.querySelector('.qty-field').className = 'qty-field w-10 text-center bg-transparent font-data-tabular-md text-data-tabular-md text-on-surface font-semibold focus:outline-none';
+        }
+      }
+    }
+
+    rows.forEach((row) => {
+      const minusBtn = row.querySelector('.btn-qty-minus');
+      const plusBtn = row.querySelector('.btn-qty-plus');
+      const input = row.querySelector('.qty-field');
+      const deleteBtn = row.querySelector('.btn-row-delete');
+
+      if (minusBtn && plusBtn && input) {
+        minusBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          let val = parseInt(input.value, 10) || 0;
+          if (val > 0) {
+            val -= 1;
+            input.value = val;
+            updateRowStockState(row, val);
+            showToast(`Inventory updated: ${val} units remaining`);
+          }
+        });
+
+        plusBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          let val = parseInt(input.value, 10) || 0;
+          val += 1;
+          input.value = val;
+          updateRowStockState(row, val);
+          showToast(`Inventory updated: ${val} units available`);
+        });
+
+        input.addEventListener('change', () => {
+          let val = parseInt(input.value, 10);
+          if (isNaN(val) || val < 0) val = 0;
+          input.value = val;
+          updateRowStockState(row, val);
+          showToast(`Inventory updated: ${val} units available`);
+        });
+      }
+
+      if (deleteBtn) {
+        deleteBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const title = row.querySelector('.font-title-sm').textContent;
+          if (confirm(`Remove "${title}" from your product catalog?`)) {
+            row.remove();
+            showToast(`Removed "${title}"`, 'info');
+            updateBulkBar();
+          }
+        });
+      }
+    });
+
+    // View Switcher Micro-toggle
+    const viewTableBtn = document.getElementById('view-table-btn');
+    const viewGridBtn = document.getElementById('view-grid-btn');
+    if (viewTableBtn && viewGridBtn) {
+      viewGridBtn.addEventListener('click', () => {
+        showToast('Card grid visualization active');
+        viewGridBtn.className = 'p-1.5 rounded-md bg-surface-container-lowest text-primary shadow-sm transition-all';
+        viewTableBtn.className = 'p-1.5 rounded-md text-on-surface-variant hover:text-on-surface transition-all';
+      });
+      viewTableBtn.addEventListener('click', () => {
+        viewTableBtn.className = 'p-1.5 rounded-md bg-surface-container-lowest text-primary shadow-sm transition-all';
+        viewGridBtn.className = 'p-1.5 rounded-md text-on-surface-variant hover:text-on-surface transition-all';
+      });
+    }
+
+    // Export CSV click
+    const btnExportCsv = document.getElementById('btn-export-csv');
+    if (btnExportCsv) {
+      btnExportCsv.addEventListener('click', () => {
+        showToast('Generating live inventory CSV export...');
+      });
+    }
+  })();
+</script></main></div></body></html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#dae2fd", "surface-dim": "#d2d9f4", "on-tertiary-fixed-variant": "#653e00", "on-tertiary": "#ffffff", "surface-container-lowest": "#ffffff", "on-background": "#131b2e", "on-error-container": "#93000a", "background": "#faf8ff", "on-secondary-fixed-variant": "#005236", "on-error": "#ffffff", "on-primary": "#ffffff", "on-primary-container": "#c1beff", "on-surface": "#131b2e", "on-secondary": "#ffffff", "secondary-container": "#6cf8bb", "tertiary": "#553300", "on-tertiary-container": "#ffb759", "tertiary-container": "#744800", "surface-tint": "#5148d7", "error": "#ba1a1a", "inverse-primary": "#c3c0ff", "surface": "#faf8ff", "on-surface-variant": "#464554", "on-secondary-fixed": "#002113", "outline": "#777586", "tertiary-fixed-dim": "#ffb95f", "secondary": "#006c49", "on-tertiary-fixed": "#2a1700", "surface-variant": "#dae2fd", "surface-container-low": "#f2f3ff", "primary-fixed": "#e3dfff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#6ffbbe", "primary-container": "#4338ca", "primary-fixed-dim": "#c3c0ff", "primary": "#2a14b4", "on-primary-fixed": "#100069", "surface-bright": "#faf8ff", "outline-variant": "#c7c4d7", "inverse-surface": "#283044", "error-container": "#ffdad6", "surface-container-high": "#e2e7ff", "on-primary-fixed-variant": "#372abf", "on-secondary-container": "#00714d", "surface-container": "#eaedff", "inverse-on-surface": "#eef0ff", "secondary-fixed-dim": "#4edea3" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "space-xl": "2rem", "sidebar-collapsed": "4.5rem", "space-lg": "1.5rem", "gutter-desktop": "1.5rem", "sidebar-expanded": "16rem", "space-md": "1rem", "space-2xl": "3rem", "space-2xs": "0.25rem", "gutter-mobile": "1rem", "space-xs": "0.5rem", "space-sm": "0.75rem" }, fontFamily: { "headline-xl": ["Inter"], "headline-md": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "data-tabular-md": ["Inter"], "body-lg": ["Inter"], "title-sm": ["Inter"], "headline-xl-mobile": ["Inter"], "data-tabular-lg": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"] }, fontSize: { "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "data-tabular-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }], "body-lg": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "title-sm": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "data-tabular-lg": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Artisan Catalog Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1US5CF_Uu8rOKbvUCSj49xkYB8dsPSiUGeJuJnAtiblhCRnqm3n_hW4edbiwWmVwZkpW6uetjMqQ1kmpfem7eB22u8h3qnhcd40XSpsiu_VLfsa-O7Ar-5azfpxN4jac1h0inzT11PR-o-6_Op4oxWs0Q6EX-zCGlUcXvngodykMokXRyWFEb4PVRxhHHTIYpLXdFIN-48nsyEm-Fmtf4Zz4GdgTLBjMMi_dTMAq254vh7UI2wGlNqnyjs"><div class="flex flex-col"><span class="font-title-sm text-title-sm text-on-surface leading-tight">Artisan Commerce</span><span class="font-label-sm text-label-sm text-on-surface-variant">Merchant Console</span></div></div><div class="px-space-md py-space-sm"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><div class="flex flex-col truncate pr-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Active Store</span><span class="font-title-sm text-title-sm text-on-surface truncate">Velvet &amp; Oak</span></div><div class="flex items-center gap-space-2xs bg-surface-container-lowest px-space-xs py-space-2xs rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><span class="h-2 w-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-secondary font-semibold">Live</span></div></div></div><nav class="flex flex-col gap-space-2xs px-space-md mt-space-xs" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.04)]"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg transition-all bg-primary-container text-on-primary font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.04)]" data-path="dashboard" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Dashboard</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="inventory-manager" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Inventory Manager</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="add-product" href="#"><span class="material-symbols-outlined text-lg">add_circle</span>Add Product</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="categories" href="#"><span class="material-symbols-outlined text-lg">category</span>Categories</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="shop-settings" href="#"><span class="material-symbols-outlined text-lg">settings</span>Shop Settings</a></nav></div><div class="px-space-md pb-space-md flex flex-col gap-space-xs"><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="public-storefront-preview" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-base text-primary">storefront</span><span class="font-label-md text-label-md">Store Preview</span></div><span class="material-symbols-outlined text-sm text-on-surface-variant">north_east</span></a><div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-base text-secondary">sync</span><span class="font-label-sm text-label-sm text-on-surface-variant">Live Catalog Sync</span></div><span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">100%</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-lg"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-base">search</span><input class="w-full pl-9 pr-space-md py-1.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]" placeholder="Search inventory SKU, title, tag..." type="text"></div></div><div class="flex items-center gap-space-sm"><a class="hidden sm:inline-flex items-center gap-space-2xs px-space-sm py-1.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" href="/shop/velvet-oak" target="_blank"><span class="material-symbols-outlined text-sm text-on-surface-variant">open_in_new</span>View Storefront ↗</a><button class="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Share QR Code" type="button"><span class="material-symbols-outlined text-base">qr_code_2</span></button><a class="inline-flex items-center gap-space-2xs px-space-md py-1.5 rounded-lg bg-primary-container text-on-primary hover:opacity-95 transition-opacity font-label-md text-label-md shadow-[0_1px_4px_rgba(0,0,0,0.08)]" data-path="add-product" href="#"><span class="material-symbols-outlined text-sm text-on-primary">add</span>Add Product</a><div class="h-6 w-px bg-surface-container mx-space-2xs"></div><button class="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-lg">notifications</span><span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-error"></span></button><div class="flex items-center gap-space-xs pl-space-2xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxB0ptWz3ClOfWkdVu4sf2ZzA7fxN54mai0gb0z-UVkgb93Iyo0pg28BKzvVoD3abSkIz-8FDmeKo0Ee-TKTVnYHsyHPlNVAkNC9JFvlkfqvUv5A6HnrEFcm_jpkU2s58xL7kowkFIiFyxZJKQe7mrZR-gXaDoUduQD16GXHol-S-vffiQ3MBhv766upknCztxKGAzdn1SC-jMeAw2KSOhjxuNxqohREApKLlNbpQo0GGJu2X8eB__"><div class="hidden lg:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Elena Vance</span><span class="font-label-sm text-label-sm text-on-surface-variant">Shop Owner</span></div></div></div></div></header><main class="relative pt-16 w-full bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="p-space-lg max-w-7xl mx-auto w-full flex flex-col gap-space-lg">
+<!-- Top Hero Banner Card -->
+<section class="relative overflow-hidden rounded-xl bg-surface-container-low shadow-sm">
+<div class="absolute -right-20 -top-24 w-96 h-96 rounded-full bg-primary-fixed-dim/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-12 -bottom-16 w-80 h-80 rounded-full bg-secondary-fixed/25 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 p-space-lg flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="inline-flex items-center gap-space-2xs bg-secondary-container/40 text-on-secondary-container px-space-xs py-0.5 rounded-full w-fit">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Live &amp; Synchronized</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Welcome back, Elena!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex flex-wrap items-center gap-x-2 gap-y-1">
+<span>Your boutique catalog is live at</span>
+<a class="font-data-tabular-md text-data-tabular-md text-primary font-semibold hover:underline" href="#">/shop/velvet-oak</a>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary">
+<span class="material-symbols-outlined text-sm">visibility</span>
+              142 views today
+            </span>
+</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs w-full sm:w-auto">
+<button class="flex-1 sm:flex-none inline-flex items-center justify-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all shadow-sm font-label-md text-label-md" id="copyLinkBtn" onclick="copyShopLink()" type="button">
+<span class="material-symbols-outlined text-base text-primary">content_copy</span>
+<span id="copyBtnText">Copy Link</span>
+</button>
+<button class="flex-1 sm:flex-none inline-flex items-center justify-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary hover:opacity-95 transition-all shadow-md font-label-md text-label-md" onclick="triggerStandeeModal()" type="button">
+<span class="material-symbols-outlined text-base">print</span>
+<span>Download Standee Card</span>
+</button>
+</div>
+</div>
+<!-- Micro Bar Indicator -->
+<div class="bg-surface-container px-space-lg py-2 flex flex-wrap items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-space-sm">
+<span class="flex items-center gap-1 text-on-surface font-medium">
+<span class="material-symbols-outlined text-xs text-secondary">check_circle</span>
+            99.9% Storefront Uptime
+          </span>
+<span class="hidden sm:inline text-outline-variant">|</span>
+<span class="hidden sm:inline">Next automated inventory sync in 12m</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span>Catalog Storage</span>
+<div class="w-24 h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="w-3/5 h-full bg-primary rounded-full"></div>
+</div>
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">60%</span>
+</div>
+</div>
+</section>
+<!-- Key Metric Cards (4 in a row) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Products</span>
+<span class="p-2 rounded-lg bg-surface-container-low text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">inventory_2</span>
+</span>
+</div>
+<div class="mt-space-sm flex flex-col">
+<div class="flex items-baseline gap-space-2xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">48</span>
+<span class="font-body-md text-body-md text-on-surface-variant">items</span>
+</div>
+<div class="mt-space-2xs flex items-center gap-1 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+4 added this week</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Stock Alerts</span>
+<span class="p-2 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">notification_important</span>
+</span>
+</div>
+<div class="mt-space-sm flex flex-col">
+<div class="flex items-baseline gap-space-2xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">3</span>
+<span class="font-body-md text-body-md text-error font-medium">need attention</span>
+</div>
+<div class="mt-space-2xs flex items-center justify-between">
+<span class="bg-surface-container-high px-space-xs py-0.5 rounded-full text-on-tertiary-fixed-variant font-label-sm text-label-sm">2 Low / 1 Empty</span>
+<a class="font-label-md text-label-md text-primary font-semibold hover:underline" href="#inventory-table">Restock ↗</a>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Store Inquiries</span>
+<span class="p-2 rounded-lg bg-secondary-container/50 text-on-secondary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">chat</span>
+</span>
+</div>
+<div class="mt-space-sm flex flex-col">
+<div class="flex items-baseline gap-space-2xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">39</span>
+<span class="font-body-md text-body-md text-on-surface-variant">WhatsApp clicks</span>
+</div>
+<div class="mt-space-2xs flex items-center gap-1 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+18% vs last week</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Catalog Spectrum</span>
+<span class="p-2 rounded-lg bg-surface-container-low text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">category</span>
+</span>
+</div>
+<div class="mt-space-sm flex flex-col">
+<div class="flex items-baseline gap-space-2xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">6</span>
+<span class="font-body-md text-body-md text-on-surface-variant">active categories</span>
+</div>
+<div class="mt-space-2xs flex items-center gap-1 overflow-hidden truncate font-label-sm text-label-sm text-on-surface-variant">
+<span>Ceramics, Leather, Wood...</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Urgent Restock Alert Action Bar -->
+<section class="rounded-xl bg-surface-container-low p-space-md shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="h-10 w-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-on-tertiary-fixed-variant shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-xl">warning</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold">Cedarwood &amp; Amber Candle</span>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">Only 2 left</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Current reserve is below minimum safety threshold (5 units).</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs w-full sm:w-auto">
+<button class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1 px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" id="quickRestockBtn" onclick="quickRestockCandle()" type="button">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+<span>+5 Quick Restock</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="Dismiss Alert" type="button">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+</section>
+<!-- Main Content Split Grid: Table (Left 8 cols) + Share Widget (Right 4 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Recent Products (8 Columns) -->
+<section class="lg:col-span-8 flex flex-col gap-space-sm" id="inventory-table">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Inventory</h2>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high font-data-tabular-md text-data-tabular-md text-on-surface font-semibold">5 items</span>
+</div>
+<a class="font-label-md text-label-md text-primary font-semibold hover:underline flex items-center gap-1" href="#">
+            Open Inventory Manager
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Table Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-2.5 px-space-md font-semibold">Product</th>
+<th class="py-2.5 px-space-sm font-semibold">Category</th>
+<th class="py-2.5 px-space-sm font-semibold text-right">Price</th>
+<th class="py-2.5 px-space-sm font-semibold">Status</th>
+<th class="py-2.5 px-space-sm font-semibold">Stock Adj</th>
+<th class="py-2.5 px-space-md text-right font-semibold">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-on-surface font-body-sm text-body-sm">
+<!-- Product 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-xs px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-lg object-cover bg-surface-container shadow-sm flex-shrink-0" data-alt="A handcrafted stoneware ceramic coffee mug with soft earthy speckled cream glaze and raw clay exposed bottom, photographed on clean minimalist ash wood surface in soft morning daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsUEqdaDGIj4QYUySDeFdtN1Hgr8NI5b5eUb55WZ0jxXcAis8EVkrvsSacv83d5oS8KSX0YF9hyPKF7ludG4Q4gSm7FkypVjl0MmIF7S7FmbF08ukb8AJTv_2ZyE7w2K9rRD9n1jAL2_imog3jFtu4Bx7kwiwFTUCtUTc98B7yoZLvoh4RyR1WF-F6AiBMNa2UOfWb7pqkiTJmXYUCJ5U-u5DORrSVdIzAW7dE6luRCs3y3qXni2dH">
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Stoneware Pour-Over Mug</span>
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface-variant">SKU-STM-091</span>
+</div>
+</div>
+</td>
+<td class="py-space-xs px-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">Ceramics</span>
+</td>
+<td class="py-space-xs px-space-sm text-right font-data-tabular-md text-data-tabular-md font-semibold text-on-surface">$38.00</td>
+<td class="py-space-xs px-space-sm">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                      18 In Stock
+                    </span>
+</td>
+<td class="py-space-xs px-space-sm">
+<div class="inline-flex items-center bg-surface-container-low rounded-lg p-0.5">
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="decrementStock('qty-1')">
+<span class="material-symbols-outlined text-xs">remove</span>
+</button>
+<span class="font-data-tabular-md text-data-tabular-md w-8 text-center font-semibold" id="qty-1">18</span>
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="incrementStock('qty-1')">
+<span class="material-symbols-outlined text-xs">add</span>
+</button>
+</div>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container font-semibold">Edit</button>
+</td>
+</tr>
+<!-- Product 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-xs px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-lg object-cover bg-surface-container shadow-sm flex-shrink-0" data-alt="Rich vegetable-tanned Italian saddle leather travel wallet with brass rivet closure and contrast hand-stitched edging, arranged cleanly against textured neutral parchment paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqEfUj2G_byCunKwh96fvM8j014mHzI36prMkC7jfE_ea3hXBll42EaJPHiHZVhq8fbCbw01BrYpmpcE0hjBg_x5-IuLs4IGzBc6kTbw5a78E_4Yo9z0wCE5CfNozUppKML6rpdbf19VOkwwrFEbEv5B8G2zym6LdzkPIORyEO63FvFD0SCLhpzfoKyr_GaP-bMVcKJxobPgcDYEHG0f4EcsjBhoIosCMz3_0dcPx_RnyvDb_WXKdd">
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Saddle Leather Journal Folio</span>
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface-variant">SKU-LEA-440</span>
+</div>
+</div>
+</td>
+<td class="py-space-xs px-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">Leatherware</span>
+</td>
+<td class="py-space-xs px-space-sm text-right font-data-tabular-md text-data-tabular-md font-semibold text-on-surface">$74.00</td>
+<td class="py-space-xs px-space-sm">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                      7 In Stock
+                    </span>
+</td>
+<td class="py-space-xs px-space-sm">
+<div class="inline-flex items-center bg-surface-container-low rounded-lg p-0.5">
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="decrementStock('qty-2')">
+<span class="material-symbols-outlined text-xs">remove</span>
+</button>
+<span class="font-data-tabular-md text-data-tabular-md w-8 text-center font-semibold" id="qty-2">7</span>
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="incrementStock('qty-2')">
+<span class="material-symbols-outlined text-xs">add</span>
+</button>
+</div>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container font-semibold">Edit</button>
+</td>
+</tr>
+<!-- Product 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-xs px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-lg object-cover bg-surface-container shadow-sm flex-shrink-0" data-alt="Artisanal hand-poured soy wax scented candle in a textured matte amber glass jar with natural cotton wick, minimalist botanical typography label, warm golden ambiance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeIf9pL75A8-1Ebt3TH3o719-K30Jm8sxeGaRitzEX1OvuLSc-x_SwvCVicRMUAWO3TwTEjEC1bJPup5xmHbKGVHh2mGYH_hFUGsGT4j87AGeGWnT878ow4ecElz-s_IM4VtjGAGqOxnm8pnap0oDtMkSN_XZQt5es0efuI4d6JPhKuydFMDwFPKGDNoxE7iE14dXHb6i0TYchbTo8Lj0hYhVbT2mA8Z2IQvqrylqDb98VxpbqvAL7">
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Cedarwood &amp; Amber Candle</span>
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface-variant">SKU-CND-112</span>
+</div>
+</div>
+</td>
+<td class="py-space-xs px-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">Candles</span>
+</td>
+<td class="py-space-xs px-space-sm text-right font-data-tabular-md text-data-tabular-md font-semibold text-on-surface">$29.00</td>
+<td class="py-space-xs px-space-sm">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-error-container/60 text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-error"></span>
+                      2 Low Stock
+                    </span>
+</td>
+<td class="py-space-xs px-space-sm">
+<div class="inline-flex items-center bg-surface-container-low rounded-lg p-0.5">
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="decrementStock('qty-3')">
+<span class="material-symbols-outlined text-xs">remove</span>
+</button>
+<span class="font-data-tabular-md text-data-tabular-md w-8 text-center font-semibold" id="qty-3">2</span>
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="incrementStock('qty-3')">
+<span class="material-symbols-outlined text-xs">add</span>
+</button>
+</div>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container font-semibold">Edit</button>
+</td>
+</tr>
+<!-- Product 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-xs px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-lg object-cover bg-surface-container shadow-sm flex-shrink-0" data-alt="Pure washed organic linen throw blanket in oatmeal beige tone with subtle frayed fringe borders, folded elegantly on a mid-century walnut bench." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvm3MLcJwE0qMPtJAW15y26qHSqKXT9ug4Ri4Mf_RTCuiDncsenNxIl7QRJDcmwzTMKqEBcTD_NUA6iFVwdlTn52qMDj4PAYc_g1vrkKXXJxp2jVEtCWCU-iAa5umCS6twLND3PSmdx-WNynAxYjY3MlW9GUr6Spxj7LTMwqLSI__5kXOtBBKOm54ruVNpXqSghCxdTMJunM_aifS5rLNdHxzu3QfjBmebx6t50ooEM1kOk2aCPOfK">
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Raw Linen Loom Throw</span>
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface-variant">SKU-TXT-890</span>
+</div>
+</div>
+</td>
+<td class="py-space-xs px-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">Textiles</span>
+</td>
+<td class="py-space-xs px-space-sm text-right font-data-tabular-md text-data-tabular-md font-semibold text-on-surface">$115.00</td>
+<td class="py-space-xs px-space-sm">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                      12 In Stock
+                    </span>
+</td>
+<td class="py-space-xs px-space-sm">
+<div class="inline-flex items-center bg-surface-container-low rounded-lg p-0.5">
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="decrementStock('qty-4')">
+<span class="material-symbols-outlined text-xs">remove</span>
+</button>
+<span class="font-data-tabular-md text-data-tabular-md w-8 text-center font-semibold" id="qty-4">12</span>
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="incrementStock('qty-4')">
+<span class="material-symbols-outlined text-xs">add</span>
+</button>
+</div>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container font-semibold">Edit</button>
+</td>
+</tr>
+<!-- Product 5 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-xs px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-lg object-cover bg-surface-container shadow-sm flex-shrink-0" data-alt="Turned black walnut wood decorative serving bowl with organic undulating live edge and food-safe matte tung oil sheen on architectural slate background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKYCpX2VygOUAVUqAw9Tq05QApT0-LO0574N5vPmDEoms7gi6qRwW38UYVIIdTJ2HKe10NTjvy7k6J_zPz5clgDRQAnhrGw_T6uSwh2n4EzjbGOexhWocD8IYTMpMSNMNkZgmkfG8-XulmAJu79W01qRTnRe9UFdofSjH2YTz7hxVcRZDic1D1hrB-HBXpRfGqt5xqtehDgC16yAvwrgYQrobPVSxg46PBl7OBFvsv40JMsavWaokO">
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Hand-Carved Walnut Platter</span>
+<span class="font-data-tabular-md text-data-tabular-md text-on-surface-variant">SKU-WDW-033</span>
+</div>
+</div>
+</td>
+<td class="py-space-xs px-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">Woodwork</span>
+</td>
+<td class="py-space-xs px-space-sm text-right font-data-tabular-md text-data-tabular-md font-semibold text-on-surface">$88.00</td>
+<td class="py-space-xs px-space-sm">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-outline"></span>
+                      0 Out of Stock
+                    </span>
+</td>
+<td class="py-space-xs px-space-sm">
+<div class="inline-flex items-center bg-surface-container-low rounded-lg p-0.5">
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="decrementStock('qty-5')">
+<span class="material-symbols-outlined text-xs">remove</span>
+</button>
+<span class="font-data-tabular-md text-data-tabular-md w-8 text-center font-semibold" id="qty-5">0</span>
+<button class="h-6 w-6 rounded bg-surface-container-lowest text-on-surface flex items-center justify-center hover:bg-surface-container-high text-xs" onclick="incrementStock('qty-5')">
+<span class="material-symbols-outlined text-xs">add</span>
+</button>
+</div>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container font-semibold">Edit</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Bottom Bar -->
+<div class="p-space-sm bg-surface-container-low/40 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Showing 5 of 48 total products</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface font-semibold shadow-sm">1</button>
+<button class="px-2 py-1 rounded hover:bg-surface-container-high transition-colors">2</button>
+<button class="px-2 py-1 rounded hover:bg-surface-container-high transition-colors">3</button>
+<span class="px-1">...</span>
+<button class="px-2 py-1 rounded hover:bg-surface-container-high transition-colors">10</button>
+</div>
+</div>
+</div>
+<!-- Weekly Traffic Visualization Strip -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Catalog Engagement Trajectory</span>
+<span class="font-data-tabular-md text-data-tabular-md text-secondary font-semibold">+22.4% this week</span>
+</div>
+<div class="h-16 w-full flex items-end gap-2 pt-2">
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-container-high group-hover:bg-primary transition-all rounded-t" style="height: 40%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mon</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-container-high group-hover:bg-primary transition-all rounded-t" style="height: 55%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tue</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-container-high group-hover:bg-primary transition-all rounded-t" style="height: 48%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Wed</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-container-high group-hover:bg-primary transition-all rounded-t" style="height: 70%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Thu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-container-high group-hover:bg-primary transition-all rounded-t" style="height: 85%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fri</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-primary-container group-hover:bg-primary transition-all rounded-t" style="height: 100%"></div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Sat</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-container-high group-hover:bg-primary transition-all rounded-t" style="height: 62%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sun</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Storefront Instant Share Widget (Right 4 Columns) -->
+<aside class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Storefront Share</h3>
+<span class="px-space-xs py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">Live Link</span>
+</div>
+<!-- Dynamic Rendered QR Card -->
+<div class="flex flex-col items-center justify-center p-space-md rounded-xl bg-surface-container-low gap-space-sm text-center">
+<div class="p-3 bg-surface-container-lowest rounded-xl shadow-md flex items-center justify-center">
+<!-- High Fidelity Handcrafted Inline SVG QR Code -->
+<svg class="w-36 h-36 text-on-surface" fill="currentColor" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+<!-- Top Left Finder -->
+<rect fill="none" height="35" rx="3" stroke="currentColor" stroke-width="6" width="35" x="10" y="10"></rect>
+<rect fill="currentColor" height="15" rx="2" width="15" x="20" y="20"></rect>
+<!-- Top Right Finder -->
+<rect fill="none" height="35" rx="3" stroke="currentColor" stroke-width="6" width="35" x="95" y="10"></rect>
+<rect fill="currentColor" height="15" rx="2" width="15" x="105" y="20"></rect>
+<!-- Bottom Left Finder -->
+<rect fill="none" height="35" rx="3" stroke="currentColor" stroke-width="6" width="35" x="10" y="95"></rect>
+<rect fill="currentColor" height="15" rx="2" width="15" x="20" y="105"></rect>
+<!-- Alignment Pattern -->
+<rect fill="none" height="25" rx="2" stroke="currentColor" stroke-width="5" width="25" x="90" y="90"></rect>
+<rect fill="currentColor" height="9" width="9" x="98" y="98"></rect>
+<!-- Timing & Data Grid Modules -->
+<circle cx="55" cy="20" r="3.5"></circle>
+<circle cx="70" cy="20" r="3.5"></circle>
+<circle cx="85" cy="20" r="3.5"></circle>
+<circle cx="55" cy="35" r="3.5"></circle>
+<circle cx="70" cy="35" r="3.5"></circle>
+<circle cx="85" cy="35" r="3.5"></circle>
+<circle cx="20" cy="55" r="3.5"></circle>
+<circle cx="35" cy="55" r="3.5"></circle>
+<circle cx="50" cy="55" r="3.5"></circle>
+<circle cx="65" cy="55" r="3.5"></circle>
+<circle cx="80" cy="55" r="3.5"></circle>
+<circle cx="95" cy="55" r="3.5"></circle>
+<circle cx="110" cy="55" r="3.5"></circle>
+<circle cx="125" cy="55" r="3.5"></circle>
+<circle cx="20" cy="70" r="3.5"></circle>
+<circle cx="35" cy="70" r="3.5"></circle>
+<circle cx="50" cy="70" r="3.5"></circle>
+<circle cx="70" cy="70" fill="#4338ca" r="4.5"></circle>
+<circle cx="90" cy="70" r="3.5"></circle>
+<circle cx="110" cy="70" r="3.5"></circle>
+<circle cx="55" cy="85" r="3.5"></circle>
+<circle cx="70" cy="85" r="3.5"></circle>
+<circle cx="55" cy="100" r="3.5"></circle>
+<circle cx="70" cy="100" r="3.5"></circle>
+<circle cx="55" cy="115" r="3.5"></circle>
+<circle cx="70" cy="115" r="3.5"></circle>
+<circle cx="125" cy="95" r="3.5"></circle>
+<circle cx="125" cy="110" r="3.5"></circle>
+<circle cx="125" cy="125" r="3.5"></circle>
+</svg>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface">Scan for Instant Showcase</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Points directly to velvet-oak live menu</span>
+</div>
+</div>
+<!-- Instant Channels Grid -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">1-Click Distribution</span>
+<!-- WhatsApp Direct Share -->
+<a class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors group" href="https://wa.me/?text=Explore%20the%20new%20Velvet%20%26%20Oak%20Artisan%20Collection%3A%20https%3A%2F%2Fartisan.store%2Fvelvet-oak" target="_blank">
+<div class="flex items-center gap-space-sm">
+<span class="h-8 w-8 rounded-full bg-secondary flex items-center justify-center text-on-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-base">send</span>
+</span>
+<div class="flex flex-col text-left">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">WhatsApp Broadcast</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Broadcast catalog link to buyers</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
+</a>
+<!-- Instagram Story Link -->
+<button class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors group text-left" onclick="copyStoryLink()" type="button">
+<div class="flex items-center gap-space-sm">
+<span class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary flex-shrink-0">
+<span class="material-symbols-outlined text-base">photo_camera</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Instagram Story Link</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pre-formatted swipe up URL</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">link</span>
+</button>
+<!-- Table Tent Standee PDF Download -->
+<button class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors group text-left" onclick="triggerStandeeModal()" type="button">
+<div class="flex items-center gap-space-sm">
+<span class="h-8 w-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-base">picture_as_pdf</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Table Tent Standee (PDF)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Print-ready A6 / 4x6 tabletop card</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">download</span>
+</button>
+</div>
+</div>
+<!-- Curated Artisan Tip Box -->
+<div class="p-space-md rounded-xl bg-primary-fixed/20 shadow-sm flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-xl text-primary mt-0.5">lightbulb</span>
+<div class="flex flex-col gap-1">
+<span class="font-title-sm text-title-sm text-on-surface">Artisan Maker Pro-Tip</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Placing your printed QR Standee at the workshop checkout counter increases catalog repeat orders by <strong class="text-on-surface">34%</strong>.
+            </p>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<!-- Micro-notification toast container -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-inverse-surface text-inverse-on-surface shadow-xl" id="toast">
+<span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium" id="toastMsg">Link copied to clipboard!</span>
+</div>
+</div>
+<script>
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    if (toast && toastMsg) {
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+  }
+
+  function copyShopLink() {
+    const url = "https://artisan.store/shop/velvet-oak";
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url);
+    }
+    const btnText = document.getElementById('copyBtnText');
+    if (btnText) {
+      btnText.textContent = 'Copied!';
+      setTimeout(() => { btnText.textContent = 'Copy Link'; }, 2000);
+    }
+    showToast("Storefront URL copied to clipboard!");
+  }
+
+  function copyStoryLink() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText("https://artisan.store/shop/velvet-oak?utm_source=instagram_story");
+    }
+    showToast("Instagram Story Sticker link copied!");
+  }
+
+  function triggerStandeeModal() {
+    showToast("Generating print-ready PDF Standee (A6 format)...");
+  }
+
+  function incrementStock(elementId) {
+    const elem = document.getElementById(elementId);
+    if (elem) {
+      let val = parseInt(elem.textContent, 10);
+      val = isNaN(val) ? 0 : val + 1;
+      elem.textContent = val;
+    }
+  }
+
+  function decrementStock(elementId) {
+    const elem = document.getElementById(elementId);
+    if (elem) {
+      let val = parseInt(elem.textContent, 10);
+      if (val > 0) {
+        elem.textContent = val - 1;
+      }
+    }
+  }
+
+  function quickRestockCandle() {
+    const candleQty = document.getElementById('qty-3');
+    if (candleQty) {
+      let val = parseInt(candleQty.textContent, 10);
+      candleQty.textContent = val + 5;
+    }
+    const btn = document.getElementById('quickRestockBtn');
+    if (btn) {
+      btn.innerHTML = '<span class="material-symbols-outlined text-sm text-secondary">check</span> Restocked +5!';
+      btn.classList.add('pointer-events-none');
+    }
+    showToast("Added +5 units to Cedarwood & Amber Candle");
+  }
+</script></main></div></body></html>
