@@ -32,6 +32,9 @@ StallFront is an instant digital catalog and storefront builder designed for sma
   - suggesting the most relevant product category
   - improving product marketing copy for local buyers
 
+## AI Declaration
+https://docs.google.com/spreadsheets/d/1Ip0drC0pJadyIj_Op6jfkndkXv1W_O7eXwampkuxI3I/edit?gid=2136926924#gid=2136926924
+
 ## Team Member Details and Contributions
 The team members can be updated with their exact names and roles as needed. The project structure currently reflects the following responsibilities:
 
