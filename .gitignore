@@ -18,6 +18,10 @@ out/
 build/
 dist/
 
+# Rust
+target/
+*.pdb
+
 # OS
 .DS_Store
 Thumbs.db
